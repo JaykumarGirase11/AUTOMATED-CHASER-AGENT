@@ -1,6 +1,8 @@
-# Automated Chaser Agent
+# Automated Chaser Agent 🚀
 
 An intelligent task management and automated reminder system built with Next.js, MongoDB, and AI-powered messaging using LLaMA 3.1 via Groq. The system integrates with Boltic platform for automated workflow execution.
+
+**Live Demo:** [https://automated-chaser-agent.vercel.app](https://automated-chaser-agent.vercel.app)
 
 ![Automated Chaser Agent](https://via.placeholder.com/800x400?text=Automated+Chaser+Agent)
 
