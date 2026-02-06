@@ -1,50 +1,108 @@
-# Automated Chaser Agent 🚀
+# 🚀 Automated Chaser Agent
 
-An intelligent task management and automated reminder system built with Next.js 14, MongoDB, and AI-powered messaging using LLaMA 3.1 via Groq API. Features Google OAuth authentication and integrates with Boltic platform for automated workflow execution.
+<div align="center">
 
-**🌐 Live Demo:** [https://automated-chaser-agent.vercel.app](https://automated-chaser-agent.vercel.app)
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?style=for-the-badge&logo=mongodb)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Groq](https://img.shields.io/badge/Groq-LLaMA_3.1-orange?style=for-the-badge)
 
-**👨‍💻 Developer:** Jaykumar Girase
+**An intelligent task management and automated reminder system that eliminates manual follow-ups**
+
+[🌐 Live Demo](https://automated-chaser-agent.vercel.app) • [📖 Documentation](#-api-endpoints) • [🚀 Quick Start](#-installation)
+
+</div>
 
 ---
 
-## 🚀 Features
+## 📌 Overview
 
-### Core Features
-- **📋 Task Management**: Create, update, and track tasks with assignees, deadlines, and priorities
-- **🤖 AI-Powered Reminders**: Generate personalized reminder messages using LLaMA 3.1 70B via Groq
-- **🔐 Google OAuth**: Secure one-click login with Google authentication (NextAuth.js)
-- **📧 Email Notifications**: Automated reminders via Gmail SMTP (Nodemailer)
-- **⚡ Automation Rules**: Create custom rules to automatically trigger reminders based on conditions
-- **📊 Analytics Dashboard**: Visualize task completion rates, reminder effectiveness, and trends
-- **🏆 Gamification**: Leaderboard, badges, and streak tracking to encourage productivity
+Automated Chaser Agent is a powerful task management platform built with **Next.js 14**, **MongoDB**, and **AI-powered messaging** using LLaMA 3.1 via Groq API. It features multiple authentication methods including Google OAuth and OTP-based login, and integrates with the Boltic platform for automated workflow execution.
 
-### Boltic Integration
-- **Scheduled Webhooks**: Boltic triggers the `/api/webhooks/boltic` endpoint on schedule
-- **Automation Execution**: Rules are evaluated and actions executed automatically
-- **Event Tracking**: All automation events are logged for audit purposes
+> 👨‍💻 **Developer:** Jaykumar Girase  
+> 🏢 **Built for:** Fynd SDE Intern Hiring Challenge 2026
 
-### Advanced Features
-- **🔒 JWT Authentication**: Secure user authentication with httpOnly cookies
-- **📈 Delay Risk Analysis**: AI analyzes tasks to predict potential delays
-- **💬 Task Comments**: Collaborate on tasks with comment threads
-- **📑 Export Reports**: Export analytics data to CSV
-- **🎨 Beautiful UI**: Modern, responsive design with Tailwind CSS and ShadCN components
+---
+
+## ✨ Features
+
+### 🎯 Core Features
+| Feature | Description |
+|---------|-------------|
+| 📋 **Task Management** | Create, update, and track tasks with assignees, deadlines, and priorities |
+| 🤖 **AI-Powered Reminders** | Generate personalized reminder messages using LLaMA 3.1 70B via Groq |
+| 🔐 **Multi-Auth Support** | Google OAuth + Email/Password + OTP-based passwordless login |
+| 📧 **Email Notifications** | Automated reminders via Gmail SMTP (Nodemailer) |
+| ⚡ **Automation Rules** | Create custom rules to automatically trigger reminders based on conditions |
+| 📊 **Analytics Dashboard** | Visualize task completion rates, reminder effectiveness, and trends |
+| 🏆 **Gamification** | Leaderboard, badges, and streak tracking to encourage productivity |
+
+### 🔗 Boltic Integration
+| Feature | Description |
+|---------|-------------|
+| ⏰ **Scheduled Webhooks** | Boltic triggers the `/api/webhooks/boltic` endpoint on schedule |
+| 🔄 **Automation Execution** | Rules are evaluated and actions executed automatically |
+| 📝 **Event Tracking** | All automation events are logged for audit purposes |
+
+### 🛡️ Advanced Features
+| Feature | Description |
+|---------|-------------|
+| 🔒 **JWT Authentication** | Secure user authentication with httpOnly cookies |
+| 📱 **OTP Login** | Passwordless authentication via email OTP |
+| 📈 **Delay Risk Analysis** | AI analyzes tasks to predict potential delays |
+| 💬 **Task Comments** | Collaborate on tasks with comment threads |
+| 📑 **Export Reports** | Export analytics data to PDF/CSV |
+| 🎨 **Modern UI** | Beautiful, responsive design with Tailwind CSS and ShadCN components |
 
 ## 🛠️ Tech Stack
 
-| Category | Technology |
-|----------|------------|
-| Framework | Next.js 14 (App Router) |
-| Database | MongoDB Atlas with Mongoose |
-| Authentication | NextAuth.js (Google OAuth) + JWT |
-| AI/LLM | Groq API (LLaMA 3.1 70B) |
-| Email | Nodemailer (Gmail SMTP) |
-| Automation | Boltic Platform Webhooks |
-| Styling | Tailwind CSS + ShadCN UI |
-| Charts | Recharts |
-| Validation | Zod + React Hook Form |
-| Deployment | Vercel |
+<table>
+<tr>
+<td align="center"><b>Category</b></td>
+<td align="center"><b>Technology</b></td>
+</tr>
+<tr>
+<td>🖥️ Framework</td>
+<td>Next.js 14 (App Router)</td>
+</tr>
+<tr>
+<td>🗄️ Database</td>
+<td>MongoDB Atlas with Mongoose</td>
+</tr>
+<tr>
+<td>🔐 Authentication</td>
+<td>NextAuth.js (Google OAuth) + JWT + OTP</td>
+</tr>
+<tr>
+<td>🤖 AI/LLM</td>
+<td>Groq API (LLaMA 3.1 70B)</td>
+</tr>
+<tr>
+<td>📧 Email</td>
+<td>Nodemailer (Gmail SMTP)</td>
+</tr>
+<tr>
+<td>⚡ Automation</td>
+<td>Boltic Platform Webhooks</td>
+</tr>
+<tr>
+<td>🎨 Styling</td>
+<td>Tailwind CSS + ShadCN UI</td>
+</tr>
+<tr>
+<td>📊 Charts</td>
+<td>Recharts</td>
+</tr>
+<tr>
+<td>✅ Validation</td>
+<td>Zod + React Hook Form</td>
+</tr>
+<tr>
+<td>🚀 Deployment</td>
+<td>Vercel</td>
+</tr>
+</table>
 
 ## 📋 Prerequisites
 
@@ -198,6 +256,10 @@ src/
 | POST | `/api/auth/login` | User login |
 | POST | `/api/auth/logout` | User logout |
 | GET | `/api/auth/me` | Get current user |
+| POST | `/api/auth/send-otp` | Send OTP to email |
+| POST | `/api/auth/verify-otp` | Verify OTP |
+| POST | `/api/auth/otp-login` | Passwordless OTP login |
+| POST | `/api/auth/reset-password` | Reset user password |
 
 ### Tasks
 | Method | Endpoint | Description |
@@ -280,9 +342,19 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-**Jay Kumar Girase**
-- Built for Fynd SDE Intern Hiring Challenge 2026
+**Jaykumar Girase**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/jaykumar-girase)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github)](https://github.com/jaykumar-girase)
+
+> 🏢 Built for Fynd SDE Intern Hiring Challenge 2026
 
 ---
 
-⭐ Star this repo if you found it helpful!
+<div align="center">
+
+⭐ **Star this repo if you found it helpful!** ⭐
+
+Made with ❤️ by Jaykumar Girase
+
+</div>
