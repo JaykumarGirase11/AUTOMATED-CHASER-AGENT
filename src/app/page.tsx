@@ -45,7 +45,7 @@ export default function HomePage() {
               Like having a program manager who ensures every task gets done on time.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/register">
+              <Link href="/login">
                 <Button size="lg" className="text-lg px-8 h-14">
                   Start Free <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
