@@ -5,9 +5,11 @@ export interface IUser extends Document {
   _id: mongoose.Types.ObjectId
   name: string
   email: string
-  password: string
+  password?: string
   avatar?: string
   emailVerified?: boolean
+  googleId?: string
+  authProvider?: 'email' | 'google'
   role: 'admin' | 'manager' | 'member'
   settings: {
     preferredReminderTime?: string
@@ -50,13 +52,22 @@ const UserSchema = new Schema<IUser>({
   },
   password: {
     type: String,
-    required: [true, 'Password is required'],
+    required: false,
     minlength: 6,
   },
   avatar: String,
   emailVerified: {
     type: Boolean,
     default: false,
+  },
+  googleId: {
+    type: String,
+    sparse: true,
+  },
+  authProvider: {
+    type: String,
+    enum: ['email', 'google'],
+    default: 'email',
   },
   role: {
     type: String,
@@ -88,7 +99,7 @@ const UserSchema = new Schema<IUser>({
 
 // Hash password before saving
 UserSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next()
+  if (!this.isModified('password') || !this.password) return next()
   
   const salt = await bcrypt.genSalt(10)
   this.password = await bcrypt.hash(this.password, salt)
