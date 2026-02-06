@@ -1,17 +1,20 @@
 # Automated Chaser Agent 🚀
 
-An intelligent task management and automated reminder system built with Next.js, MongoDB, and AI-powered messaging using LLaMA 3.1 via Groq. The system integrates with Boltic platform for automated workflow execution.
+An intelligent task management and automated reminder system built with Next.js 14, MongoDB, and AI-powered messaging using LLaMA 3.1 via Groq API. Features Google OAuth authentication and integrates with Boltic platform for automated workflow execution.
 
-**Live Demo:** [https://automated-chaser-agent.vercel.app](https://automated-chaser-agent.vercel.app)
+**🌐 Live Demo:** [https://automated-chaser-agent.vercel.app](https://automated-chaser-agent.vercel.app)
 
-![Automated Chaser Agent](https://via.placeholder.com/800x400?text=Automated+Chaser+Agent)
+**👨‍💻 Developer:** Jaykumar Girase
+
+---
 
 ## 🚀 Features
 
 ### Core Features
 - **📋 Task Management**: Create, update, and track tasks with assignees, deadlines, and priorities
-- **🤖 AI-Powered Reminders**: Generate personalized reminder messages using LLaMA 3.1 70B
-- **📧 Multi-Channel Notifications**: Send reminders via email (Nodemailer) and Slack integration
+- **🤖 AI-Powered Reminders**: Generate personalized reminder messages using LLaMA 3.1 70B via Groq
+- **🔐 Google OAuth**: Secure one-click login with Google authentication (NextAuth.js)
+- **📧 Email Notifications**: Automated reminders via Gmail SMTP (Nodemailer)
 - **⚡ Automation Rules**: Create custom rules to automatically trigger reminders based on conditions
 - **📊 Analytics Dashboard**: Visualize task completion rates, reminder effectiveness, and trends
 - **🏆 Gamification**: Leaderboard, badges, and streak tracking to encourage productivity
@@ -33,23 +36,23 @@ An intelligent task management and automated reminder system built with Next.js,
 | Category | Technology |
 |----------|------------|
 | Framework | Next.js 14 (App Router) |
-| Database | MongoDB with Mongoose |
-| Authentication | JWT + bcryptjs |
-| AI/LLM | Groq SDK (LLaMA 3.1 70B) |
+| Database | MongoDB Atlas with Mongoose |
+| Authentication | NextAuth.js (Google OAuth) + JWT |
+| AI/LLM | Groq API (LLaMA 3.1 70B) |
 | Email | Nodemailer (Gmail SMTP) |
-| Automation | Boltic Platform |
+| Automation | Boltic Platform Webhooks |
 | Styling | Tailwind CSS + ShadCN UI |
 | Charts | Recharts |
 | Validation | Zod + React Hook Form |
-| Date Handling | date-fns |
+| Deployment | Vercel |
 
 ## 📋 Prerequisites
 
 - Node.js 18+ 
-- MongoDB database (local or Atlas)
-- Groq API key
-- Gmail account for SMTP (or other email provider)
-- Boltic platform account
+- MongoDB Atlas account
+- Groq API key (free tier available)
+- Google Cloud Console (for OAuth credentials)
+- Gmail account with App Password for SMTP
 
 ## 🔧 Installation
 
