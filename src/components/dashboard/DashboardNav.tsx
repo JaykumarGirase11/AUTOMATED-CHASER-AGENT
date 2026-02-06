@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { signOut } from 'next-auth/react'
 import { Bell, Menu, Search, Plus, LogOut, User, Settings, Loader2, X, Clock, Mail, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -122,7 +123,12 @@ export default function DashboardNav({ user }: DashboardNavProps) {
   const handleLogout = async () => {
     setIsLoggingOut(true)
     try {
+      // Clear custom auth token
       await fetch('/api/auth/logout', { method: 'POST' })
+      
+      // Clear NextAuth session (for Google login)
+      await signOut({ redirect: false })
+      
       toast({
         title: 'Logged out',
         description: 'See you soon!',

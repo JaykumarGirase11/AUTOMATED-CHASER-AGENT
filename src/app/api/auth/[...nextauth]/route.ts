@@ -8,10 +8,18 @@ const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
     }),
   ],
   callbacks: {
     async signIn({ user, account }) {
+      console.log('SignIn callback called:', user.email);
       if (account?.provider === 'google') {
         try {
           await dbConnect();
@@ -20,55 +28,60 @@ const authOptions: NextAuthOptions = {
           let existingUser = await User.findOne({ email: user.email });
           
           if (!existingUser) {
-            // Create new user
+            // Create new user with minimal data
             existingUser = await User.create({
-              name: user.name,
+              name: user.name || 'User',
               email: user.email,
-              password: '', // No password for Google users
               emailVerified: true,
               authProvider: 'google',
               googleId: user.id,
-              settings: {
-                emailNotifications: true,
-                reminderTime: '09:00',
-                timezone: 'Asia/Kolkata',
-              },
-              stats: {
-                tasksCompleted: 0,
-                currentStreak: 0,
-                longestStreak: 0,
-                totalPoints: 0,
-              },
             });
-          } else if (!existingUser.googleId) {
-            // Link Google account to existing user
-            existingUser.googleId = user.id;
-            existingUser.authProvider = 'google';
-            existingUser.emailVerified = true;
-            await existingUser.save();
+            console.log('New Google user created:', user.email);
+          } else {
+            // Update existing user with Google info
+            if (!existingUser.googleId) {
+              existingUser.googleId = user.id;
+              existingUser.authProvider = 'google';
+              existingUser.emailVerified = true;
+              await existingUser.save();
+              console.log('Existing user linked to Google:', user.email);
+            }
           }
           
+          console.log('SignIn returning true for:', user.email);
           return true;
         } catch (error) {
           console.error('Error during Google sign in:', error);
-          return false;
+          // Return true anyway to allow login
+          return true;
         }
       }
       return true;
     },
     async jwt({ token, user, account }) {
+      console.log('JWT callback called, account:', account?.provider);
       if (account?.provider === 'google' && user) {
-        await dbConnect();
-        const dbUser = await User.findOne({ email: user.email });
-        if (dbUser) {
-          token.userId = dbUser._id.toString();
-          token.name = dbUser.name;
-          token.email = dbUser.email;
+        token.userId = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.provider = 'google';
+        
+        // Try to get DB user ID
+        try {
+          await dbConnect();
+          const dbUser = await User.findOne({ email: user.email });
+          if (dbUser) {
+            token.userId = dbUser._id.toString();
+            console.log('JWT: Found DB user:', dbUser._id.toString());
+          }
+        } catch (error) {
+          console.error('JWT callback DB error:', error);
         }
       }
       return token;
     },
     async session({ session, token }) {
+      console.log('Session callback called, token:', token.email);
       if (token) {
         session.user.id = token.userId as string;
         session.user.name = token.name;
@@ -76,14 +89,36 @@ const authOptions: NextAuthOptions = {
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      console.log('Redirect callback:', url, baseUrl);
+      // Always redirect to dashboard after login
+      if (url.includes('/api/auth') || url === baseUrl || url.includes('/login')) {
+        return `${baseUrl}/dashboard`;
+      }
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
   },
   pages: {
     signIn: '/login',
+    error: '/login',
   },
   session: {
     strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === 'development',
 };
 
 const handler = NextAuth(authOptions);

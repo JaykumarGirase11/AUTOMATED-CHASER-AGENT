@@ -210,6 +210,53 @@ export default function LoginPage() {
             {/* Step 1: Email */}
             {step === 'email' && (
               <div className="space-y-4">
+                {/* Google Sign In Button - Primary Option */}
+                <Button
+                  variant="outline"
+                  className="w-full h-12 text-base"
+                  onClick={async () => {
+                    setIsGoogleLoading(true)
+                    try {
+                      await signIn('google', { 
+                        callbackUrl: '/dashboard',
+                        redirect: true 
+                      })
+                    } catch (error) {
+                      console.error('Google sign in error:', error)
+                      setIsGoogleLoading(false)
+                      toast({
+                        title: "Error",
+                        description: "Failed to connect with Google",
+                        variant: "destructive"
+                      })
+                    }
+                  }}
+                  disabled={isGoogleLoading}
+                >
+                  {isGoogleLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Connecting...
+                    </>
+                  ) : (
+                    <>
+                      <GoogleIcon />
+                      <span className="ml-2">Continue with Google</span>
+                    </>
+                  )}
+                </Button>
+
+                {/* Divider */}
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-200"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">or continue with email</span>
+                  </div>
+                </div>
+
+                {/* Email Input */}
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
                   <div className="relative">
@@ -239,7 +286,7 @@ export default function LoginPage() {
                     </>
                   ) : (
                     <>
-                      Continue
+                      Continue with Email
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </>
                   )}
@@ -249,39 +296,6 @@ export default function LoginPage() {
                   We'll send you a one-time password to verify your email.
                   {' '}New users will be registered automatically.
                 </p>
-
-                {/* Divider */}
-                <div className="relative my-6">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-200"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">or continue with</span>
-                  </div>
-                </div>
-
-                {/* Google Sign In Button */}
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => {
-                    setIsGoogleLoading(true)
-                    signIn('google', { callbackUrl: '/dashboard' })
-                  }}
-                  disabled={isGoogleLoading}
-                >
-                  {isGoogleLoading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Connecting...
-                    </>
-                  ) : (
-                    <>
-                      <GoogleIcon />
-                      <span className="ml-2">Continue with Google</span>
-                    </>
-                  )}
-                </Button>
               </div>
             )}
 

@@ -9,7 +9,11 @@ const authRoutes = ['/login', '/register']
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const token = request.cookies.get('auth_token')?.value
+  
+  // Check for both custom auth token and NextAuth session token
+  const authToken = request.cookies.get('auth_token')?.value
+  const nextAuthToken = request.cookies.get('next-auth.session-token')?.value
+  const hasValidSession = authToken || nextAuthToken
 
   // Check if the route is protected
   const isProtectedRoute = protectedRoutes.some(route => 
@@ -22,14 +26,14 @@ export function middleware(request: NextRequest) {
   )
 
   // If accessing protected route without token, redirect to login
-  if (isProtectedRoute && !token) {
+  if (isProtectedRoute && !hasValidSession) {
     const loginUrl = new URL('/login', request.url)
     loginUrl.searchParams.set('redirect', pathname)
     return NextResponse.redirect(loginUrl)
   }
 
   // If accessing auth route with token, redirect to dashboard
-  if (isAuthRoute && token) {
+  if (isAuthRoute && hasValidSession) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 

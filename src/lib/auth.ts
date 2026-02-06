@@ -1,5 +1,8 @@
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
+import { getServerSession } from 'next-auth'
+import dbConnect from '@/lib/db'
+import User from '@/models/User'
 
 const JWT_SECRET = process.env.JWT_SECRET!
 
@@ -22,12 +25,36 @@ export function verifyToken(token: string): TokenPayload | null {
 }
 
 export async function getAuthUser(): Promise<TokenPayload | null> {
+  // First check custom auth_token (OTP login)
   const cookieStore = await cookies()
   const token = cookieStore.get('auth_token')?.value
   
-  if (!token) return null
+  if (token) {
+    const payload = verifyToken(token)
+    if (payload) return payload
+  }
   
-  return verifyToken(token)
+  // Then check NextAuth session (Google login)
+  try {
+    const session = await getServerSession()
+    if (session?.user?.email) {
+      // Get actual MongoDB user ID
+      await dbConnect()
+      const dbUser = await User.findOne({ email: session.user.email })
+      
+      if (dbUser) {
+        return {
+          userId: dbUser._id.toString(),
+          email: session.user.email,
+          name: session.user.name || dbUser.name || '',
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error getting NextAuth session:', error)
+  }
+  
+  return null
 }
 
 export async function setAuthCookie(token: string): Promise<void> {
