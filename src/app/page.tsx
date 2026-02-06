@@ -19,7 +19,7 @@ export default function HomePage() {
               <Link href="/login">
                 <Button variant="ghost">Login</Button>
               </Link>
-              <Link href="/register">
+              <Link href="/login">
                 <Button>Get Started</Button>
               </Link>
             </div>
@@ -187,7 +187,7 @@ export default function HomePage() {
           <p className="text-xl text-blue-100 mb-8">
             Join teams who trust Chaser Agent to keep their projects on track.
           </p>
-          <Link href="/register">
+          <Link href="/login">
             <Button size="lg" variant="secondary" className="text-lg px-8 h-14">
               Get Started for Free <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
