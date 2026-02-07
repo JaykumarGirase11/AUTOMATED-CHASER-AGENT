@@ -69,11 +69,11 @@ export default function Sidebar() {
                   className={cn(
                     "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all",
                     isActive
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                      ? "bg-violet-50 text-violet-600 shadow-sm"
+                      : "text-gray-600 hover:bg-violet-50/50 hover:text-violet-600"
                   )}
                 >
-                  <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive && "text-blue-600")} />
+                  <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive && "text-violet-600")} />
                   {!collapsed && (
                     <span className="font-medium truncate">{item.label}</span>
                   )}
@@ -86,13 +86,13 @@ export default function Sidebar() {
         {/* Quick actions */}
         {!collapsed && (
           <div className="absolute bottom-4 left-4 right-4">
-            <div className="p-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-white">
+            <div className="p-4 gradient-bg rounded-xl text-white shadow-glow">
               <p className="font-medium text-sm">Need help?</p>
-              <p className="text-xs text-blue-100 mt-1">Check out our docs</p>
+              <p className="text-xs text-violet-100 mt-1">Check out our docs</p>
               <Button 
                 variant="secondary" 
                 size="sm" 
-                className="mt-3 w-full bg-white text-blue-600 hover:bg-blue-50"
+                className="mt-3 w-full bg-white text-violet-600 hover:bg-violet-50"
               >
                 View Docs
               </Button>

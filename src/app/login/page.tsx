@@ -182,7 +182,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-white p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 via-violet-50/30 to-white p-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-8">
@@ -192,7 +192,7 @@ export default function LoginPage() {
           <span className="text-2xl font-bold gradient-text">Chaser Agent</span>
         </div>
 
-        <Card className="shadow-lg">
+        <Card className="shadow-premium border-0">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">
               {step === 'email' && 'Get Started'}
@@ -303,8 +303,8 @@ export default function LoginPage() {
             {step === 'otp' && (
               <div className="space-y-6">
                 {isNewUser && (
-                  <div className="p-3 bg-blue-50 rounded-lg text-center">
-                    <p className="text-sm text-blue-700">
+                  <div className="p-3 bg-violet-50 rounded-lg text-center">
+                    <p className="text-sm text-violet-700">
                       🆕 New user detected! Your account will be created after verification.
                     </p>
                   </div>
@@ -365,7 +365,7 @@ export default function LoginPage() {
                   ) : (
                     <button 
                       onClick={handleSendOTP}
-                      className="text-blue-600 hover:underline"
+                      className="text-violet-600 hover:underline"
                       disabled={isLoading}
                     >
                       Resend OTP
@@ -386,7 +386,7 @@ export default function LoginPage() {
                 </h3>
                 <p className="text-gray-600">Redirecting to your dashboard...</p>
                 <div className="mt-4">
-                  <Loader2 className="h-6 w-6 animate-spin mx-auto text-blue-600" />
+                  <Loader2 className="h-6 w-6 animate-spin mx-auto text-violet-600" />
                 </div>
               </div>
             )}

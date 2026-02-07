@@ -112,14 +112,14 @@ function StatCard({
   color?: 'blue' | 'green' | 'red' | 'yellow'
 }) {
   const colors = {
-    blue: 'bg-blue-50 text-blue-600',
+    blue: 'bg-violet-50 text-violet-600',
     green: 'bg-green-50 text-green-600',
     red: 'bg-red-50 text-red-600',
     yellow: 'bg-yellow-50 text-yellow-600',
   }
 
   return (
-    <Card>
+    <Card className="card-hover">
       <CardContent className="p-6">
         <div className="flex items-start justify-between">
           <div>
@@ -161,7 +161,7 @@ export default async function DashboardPage() {
           </p>
         </div>
         <Link href="/dashboard/tasks/new">
-          <Button className="mt-4 md:mt-0 gap-2">
+          <Button className="mt-4 md:mt-0 gap-2 gradient-bg hover:shadow-glow">
             <Sparkles className="h-4 w-4" />
             Create Task
           </Button>

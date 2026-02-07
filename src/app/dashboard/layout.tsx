@@ -16,7 +16,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-violet-50/20 to-gray-50">
       {/* Background automation - runs automatically */}
       <AutomationRunner />
       

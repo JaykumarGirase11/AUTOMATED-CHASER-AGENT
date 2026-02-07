@@ -154,7 +154,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
     .slice(0, 2)
 
   return (
-    <header className="sticky top-0 z-50 h-16 bg-white border-b">
+    <header className="sticky top-0 z-50 h-16 glass border-b border-gray-200/50">
       <div className="flex items-center justify-between h-full px-4 lg:px-6">
         {/* Left side */}
         <div className="flex items-center gap-4">
@@ -221,7 +221,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                     <Link
                       href={`/dashboard/tasks?search=${encodeURIComponent(searchQuery)}`}
                       onClick={() => setShowResults(false)}
-                      className="block p-3 text-center text-sm text-blue-600 hover:bg-blue-50 border-t"
+                      className="block p-3 text-center text-sm text-violet-600 hover:bg-violet-50 border-t"
                     >
                       View all results →
                     </Link>
@@ -239,7 +239,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <Link href="/dashboard/tasks/new">
-            <Button size="sm" className="gap-2">
+            <Button size="sm" className="gap-2 gradient-bg hover:shadow-glow">
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">New Task</span>
             </Button>
@@ -316,7 +316,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                   <DropdownMenuItem asChild>
                     <Link 
                       href="/dashboard/reminders" 
-                      className="text-center text-sm text-blue-600 hover:text-blue-700 cursor-pointer justify-center"
+                      className="text-center text-sm text-violet-600 hover:text-violet-700 cursor-pointer justify-center"
                     >
                       View all notifications →
                     </Link>
@@ -336,7 +336,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
             <DropdownMenuTrigger asChild>
               <button className="flex items-center gap-2 p-1 hover:bg-gray-100 rounded-lg">
                 <Avatar className="h-8 w-8">
-                  <AvatarFallback className="bg-blue-100 text-blue-600 text-sm">
+                  <AvatarFallback className="bg-violet-100 text-violet-600 text-sm">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
