@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import jwt from 'jsonwebtoken'
 import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/authOptions'
 import dbConnect from '@/lib/db'
 import User from '@/models/User'
 
@@ -36,7 +37,7 @@ export async function getAuthUser(): Promise<TokenPayload | null> {
   
   // Then check NextAuth session (Google login)
   try {
-    const session = await getServerSession()
+    const session = await getServerSession(authOptions)
     if (session?.user?.email) {
       // Get actual MongoDB user ID
       await dbConnect()
