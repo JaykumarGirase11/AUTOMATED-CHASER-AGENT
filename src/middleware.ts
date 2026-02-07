@@ -13,7 +13,8 @@ export function middleware(request: NextRequest) {
   // Check for both custom auth token and NextAuth session token
   const authToken = request.cookies.get('auth_token')?.value
   const nextAuthToken = request.cookies.get('next-auth.session-token')?.value
-  const hasValidSession = authToken || nextAuthToken
+  const secureNextAuthToken = request.cookies.get('__Secure-next-auth.session-token')?.value
+  const hasValidSession = authToken || nextAuthToken || secureNextAuthToken
 
   // Check if the route is protected
   const isProtectedRoute = protectedRoutes.some(route => 

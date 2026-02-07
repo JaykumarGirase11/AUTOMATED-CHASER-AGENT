@@ -16,6 +16,8 @@ const nextConfig = {
     EMAIL_PASS: process.env.EMAIL_PASS,
     BOLTIC_WEBHOOK_URL: process.env.BOLTIC_WEBHOOK_URL,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   },
 }
 
