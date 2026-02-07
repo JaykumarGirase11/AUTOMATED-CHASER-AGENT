@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import User from '@/models/User'
+
+export const dynamic = 'force-dynamic'
 import { getAuthUser } from '@/lib/auth'
 
 export async function GET() {

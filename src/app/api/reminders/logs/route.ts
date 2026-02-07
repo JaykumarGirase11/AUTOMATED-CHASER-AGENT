@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import ReminderLog from '@/models/ReminderLog'
+
+export const dynamic = 'force-dynamic'
 import { getAuthUser } from '@/lib/auth'
 
 // GET - Fetch reminder history logs

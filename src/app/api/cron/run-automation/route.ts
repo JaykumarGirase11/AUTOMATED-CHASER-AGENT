@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import Task from '@/models/Task'
+
+export const dynamic = 'force-dynamic'
 import User from '@/models/User'
 import AutomationRule from '@/models/AutomationRule'
 import ReminderLog from '@/models/ReminderLog'

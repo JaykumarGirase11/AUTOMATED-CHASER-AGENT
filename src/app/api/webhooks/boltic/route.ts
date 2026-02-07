@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import Task from '@/models/Task'
+
+export const dynamic = 'force-dynamic'
 import ReminderLog from '@/models/ReminderLog'
 import { getDaysUntilDeadline, getReminderTone, formatDate } from '@/lib/utils'
 import { generateReminderMessage } from '@/services/ai'

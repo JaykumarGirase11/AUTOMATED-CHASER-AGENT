@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import Task from '@/models/Task'
+
+export const dynamic = 'force-dynamic'
 import { getAuthUser } from '@/lib/auth'
 import { taskSchema } from '@/lib/validations'
 import { getDaysUntilDeadline } from '@/lib/utils'

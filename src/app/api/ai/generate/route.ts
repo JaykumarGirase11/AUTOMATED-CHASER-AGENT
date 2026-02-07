@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { generateReminderMessage, generateCustomNudge, analyzeDelayRisk } from '@/services/ai'
 import { getAuthUser } from '@/lib/auth'
 
+export const dynamic = 'force-dynamic'
+
 // POST - Generate AI-powered message
 export async function POST(request: NextRequest) {
   try {

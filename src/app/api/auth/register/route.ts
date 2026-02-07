@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import User from '@/models/User'
+
+export const dynamic = 'force-dynamic'
 import { createToken, setAuthCookie } from '@/lib/auth'
 import { registerSchema } from '@/lib/validations'
 

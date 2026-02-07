@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import OTP from '@/models/OTP'
+
+export const dynamic = 'force-dynamic'
 import User from '@/models/User'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'

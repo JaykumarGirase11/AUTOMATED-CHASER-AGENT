@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import AutomationRule from '@/models/AutomationRule'
+
+export const dynamic = 'force-dynamic'
 import { getAuthUser } from '@/lib/auth'
 import { automationRuleSchema } from '@/lib/validations'
 

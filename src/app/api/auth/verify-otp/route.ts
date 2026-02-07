@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import dbConnect from '@/lib/db'
 import OTP from '@/models/OTP'
+
+export const dynamic = 'force-dynamic'
 import { z } from 'zod'
 
 const verifyOTPSchema = z.object({
