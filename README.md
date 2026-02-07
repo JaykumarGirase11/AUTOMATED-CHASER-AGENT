@@ -1,4 +1,4 @@
-# 🚀 Automated Chaser Agent
+# Automated Chaser Agent
 
 <div align="center">
 
@@ -10,52 +10,52 @@
 
 **An intelligent task management and automated reminder system that eliminates manual follow-ups**
 
-[🌐 Live Demo](https://automated-chaser-agent.vercel.app) • [📖 Documentation](#-api-endpoints) • [🚀 Quick Start](#-installation)
+[Live Demo](https://automated-chaser-agent.vercel.app) • [Documentation](#-api-endpoints) • [Quick Start](#-installation)
 
 </div>
 
 ---
 
-## 📌 Overview
+## Overview
 
 Automated Chaser Agent is a powerful task management platform built with **Next.js 14**, **MongoDB**, and **AI-powered messaging** using LLaMA 3.1 via Groq API. It features multiple authentication methods including Google OAuth and OTP-based login, and integrates with the Boltic platform for automated workflow execution.
 
-> 👨‍💻 **Developer:** Jaykumar Girase  
-> 🏢 **Built for:** Fynd SDE Intern Hiring Challenge 2026
+> **Developer:** Jaykumar Girase  
+> **Built for:** Fynd SDE Intern Hiring Challenge 2026
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎯 Core Features
+### Core Features
 | Feature | Description |
 |---------|-------------|
-| 📋 **Task Management** | Create, update, and track tasks with assignees, deadlines, and priorities |
-| 🤖 **AI-Powered Reminders** | Generate personalized reminder messages using LLaMA 3.1 70B via Groq |
-| 🔐 **Multi-Auth Support** | Google OAuth + Email/Password + OTP-based passwordless login |
-| 📧 **Email Notifications** | Automated reminders via Gmail SMTP (Nodemailer) |
-| ⚡ **Automation Rules** | Create custom rules to automatically trigger reminders based on conditions |
-| 📊 **Analytics Dashboard** | Visualize task completion rates, reminder effectiveness, and trends |
-| 🏆 **Gamification** | Leaderboard, badges, and streak tracking to encourage productivity |
+| **Task Management** | Create, update, and track tasks with assignees, deadlines, and priorities |
+| **AI-Powered Reminders** | Generate personalized reminder messages using LLaMA 3.1 70B via Groq |
+| **Multi-Auth Support** | Google OAuth + Email/Password + OTP-based passwordless login |
+| **Email Notifications** | Automated reminders via Gmail SMTP (Nodemailer) |
+| **Automation Rules** | Create custom rules to automatically trigger reminders based on conditions |
+| **Analytics Dashboard** | Visualize task completion rates, reminder effectiveness, and trends |
+| **Gamification** | Leaderboard, badges, and streak tracking to encourage productivity |
 
-### 🔗 Boltic Integration
+### Boltic Integration
 | Feature | Description |
 |---------|-------------|
-| ⏰ **Scheduled Webhooks** | Boltic triggers the `/api/webhooks/boltic` endpoint on schedule |
-| 🔄 **Automation Execution** | Rules are evaluated and actions executed automatically |
-| 📝 **Event Tracking** | All automation events are logged for audit purposes |
+| **Scheduled Webhooks** | Boltic triggers the `/api/webhooks/boltic` endpoint on schedule |
+| **Automation Execution** | Rules are evaluated and actions executed automatically |
+| **Event Tracking** | All automation events are logged for audit purposes |
 
-### 🛡️ Advanced Features
+### Advanced Features
 | Feature | Description |
 |---------|-------------|
-| 🔒 **JWT Authentication** | Secure user authentication with httpOnly cookies |
-| 📱 **OTP Login** | Passwordless authentication via email OTP |
-| 📈 **Delay Risk Analysis** | AI analyzes tasks to predict potential delays |
-| 💬 **Task Comments** | Collaborate on tasks with comment threads |
-| 📑 **Export Reports** | Export analytics data to PDF/CSV |
-| 🎨 **Modern UI** | Beautiful, responsive design with Tailwind CSS and ShadCN components |
+| **JWT Authentication** | Secure user authentication with httpOnly cookies |
+| **OTP Login** | Passwordless authentication via email OTP |
+| **Delay Risk Analysis** | AI analyzes tasks to predict potential delays |
+| **Task Comments** | Collaborate on tasks with comment threads |
+| **Export Reports** | Export analytics data to PDF/CSV |
+| **Modern UI** | Beautiful, responsive design with Tailwind CSS and ShadCN components |
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 <table>
 <tr>
@@ -63,48 +63,48 @@ Automated Chaser Agent is a powerful task management platform built with **Next.
 <td align="center"><b>Technology</b></td>
 </tr>
 <tr>
-<td>🖥️ Framework</td>
+<td>Framework</td>
 <td>Next.js 14 (App Router)</td>
 </tr>
 <tr>
-<td>🗄️ Database</td>
+<td>Database</td>
 <td>MongoDB Atlas with Mongoose</td>
 </tr>
 <tr>
-<td>🔐 Authentication</td>
+<td>Authentication</td>
 <td>NextAuth.js (Google OAuth) + JWT + OTP</td>
 </tr>
 <tr>
-<td>🤖 AI/LLM</td>
+<td>AI/LLM</td>
 <td>Groq API (LLaMA 3.1 70B)</td>
 </tr>
 <tr>
-<td>📧 Email</td>
+<td>Email</td>
 <td>Nodemailer (Gmail SMTP)</td>
 </tr>
 <tr>
-<td>⚡ Automation</td>
+<td>Automation</td>
 <td>Boltic Platform Webhooks</td>
 </tr>
 <tr>
-<td>🎨 Styling</td>
+<td>Styling</td>
 <td>Tailwind CSS + ShadCN UI</td>
 </tr>
 <tr>
-<td>📊 Charts</td>
+<td>Charts</td>
 <td>Recharts</td>
 </tr>
 <tr>
-<td>✅ Validation</td>
+<td>Validation</td>
 <td>Zod + React Hook Form</td>
 </tr>
 <tr>
-<td>🚀 Deployment</td>
+<td>Deployment</td>
 <td>Vercel</td>
 </tr>
 </table>
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18+ 
 - MongoDB Atlas account
@@ -112,7 +112,7 @@ Automated Chaser Agent is a powerful task management platform built with **Next.
 - Google Cloud Console (for OAuth credentials)
 - Gmail account with App Password for SMTP
 
-## 🔧 Installation
+## Installation
 
 ### 1. Clone the repository
 
@@ -165,7 +165,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -207,7 +207,7 @@ src/
     └── boltic.ts          # Boltic webhook triggers
 ```
 
-## 🔄 Boltic Integration Setup
+## Boltic Integration Setup
 
 ### Creating a Workflow in Boltic
 
@@ -247,7 +247,7 @@ src/
 | `task_overdue` | Escalate overdue tasks |
 | `automation_rule` | Execute specific automation rule |
 
-## 🔐 API Endpoints
+## API Endpoints
 
 ### Authentication
 | Method | Endpoint | Description |
@@ -284,7 +284,7 @@ src/
 | GET | `/api/analytics` | Get analytics data |
 | GET | `/api/reminders/logs` | Get reminder history |
 
-## 🚀 Deployment
+## Deployment
 
 ### Deploy to Vercel
 
@@ -301,7 +301,7 @@ vercel --prod
 
 Add all variables from `.env.local` to your Vercel project settings.
 
-## 📊 Analytics Features
+## Analytics Features
 
 - **Task Completion Rate**: Track how many tasks are completed on time
 - **Reminder Effectiveness**: Measure response rates after reminders
@@ -310,7 +310,7 @@ Add all variables from `.env.local` to your Vercel project settings.
 - **Top Assignees**: Leaderboard of most productive assignees
 - **AI Adoption Rate**: Track usage of AI-generated messages
 
-## 🎮 Gamification System
+## Gamification System
 
 ### Points System
 | Action | Points |
@@ -321,14 +321,14 @@ Add all variables from `.env.local` to your Vercel project settings.
 | Use AI Reminder | +5 |
 
 ### Badges
-- 🌟 First Task
-- 🔥 Week Warrior (7-day streak)
-- 👑 Monthly Master (30-day streak)
-- 🎯 On-Time Pro (90% rate)
-- 📈 Reminder Guru (100+ sent)
-- 🤖 AI Adopter (50+ AI reminders)
+- First Task
+- Week Warrior (7-day streak)
+- Monthly Master (30-day streak)
+- On-Time Pro (90% rate)
+- Reminder Guru (100+ sent)
+- AI Adopter (50+ AI reminders)
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -336,25 +336,25 @@ Add all variables from `.env.local` to your Vercel project settings.
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License.
 
-## 👨‍💻 Author
+## Author
 
 **Jaykumar Girase**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/jaykumar-girase)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github)](https://github.com/jaykumar-girase)
 
-> 🏢 Built for Fynd SDE Intern Hiring Challenge 2026
+> Built for Fynd SDE Intern Hiring Challenge 2026
 
 ---
 
 <div align="center">
 
-⭐ **Star this repo if you found it helpful!** ⭐
+**Star this repo if you found it helpful!**
 
-Made with ❤️ by Jaykumar Girase
+Made with love by Jaykumar Girase
 
 </div>
