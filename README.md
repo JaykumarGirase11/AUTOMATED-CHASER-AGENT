@@ -13,7 +13,7 @@
 
 *Eliminates manual follow-ups by sending AI-powered, personalized reminders — acting like a human program manager.*
 
-[Live Demo](https://automated-chaser-agent.vercel.app) · [Documentation](DOCUMENTATION.md) · [Code Walkthrough](CODE_EXPLANATION.md)
+[Live Demo](https://automatedchaseragent.vercel.app/) · [Documentation](DOCUMENTATION.md) · [Code Walkthrough](CODE_EXPLANATION.md)
 
 ---
 
@@ -276,7 +276,6 @@ The `vercel.json` sets:
 | Document | Description |
 |---|---|
 | [DOCUMENTATION.md](DOCUMENTATION.md) | Full technical documentation — architecture, database design, API reference, auth flows, AI integration |
-| [CODE_EXPLANATION.md](CODE_EXPLANATION.md) | Line-by-line code explanation — every file, every function, every library usage explained |
 
 ---
 
@@ -284,8 +283,8 @@ The `vercel.json` sets:
 
 **Jaykumar Girase** — Full Stack Developer
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/jaykumar-girase)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/jaykumar-girase)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jaykumar-girase-874210272/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/JaykumarGirase11)
 
 ---
 
