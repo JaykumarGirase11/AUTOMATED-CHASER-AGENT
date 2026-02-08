@@ -13,7 +13,7 @@
 
 *Eliminates manual follow-ups by sending AI-powered, personalized reminders — acting like a human program manager.*
 
-[Live Demo](https://automatedchaseragent.vercel.app/) · [Documentation](DOCUMENTATION.md) · [Code Walkthrough](CODE_EXPLANATION.md)
+[Live Demo](https://automatedchaseragent.vercel.app/) · [Documentation](DOCUMENTATION.md) 
 
 ---
 
