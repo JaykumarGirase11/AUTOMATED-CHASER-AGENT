@@ -170,8 +170,8 @@ export default function SettingsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-500">Manage your account and preferences</p>
+        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Settings</h1>
+        <p className="text-gray-500 mt-1">Manage your account and preferences</p>
       </div>
 
       <Tabs defaultValue="profile" className="space-y-6">
@@ -196,16 +196,16 @@ export default function SettingsPage() {
 
         {/* Profile Tab */}
         <TabsContent value="profile">
-          <Card>
+          <Card className="border-0 shadow-sm">
             <CardHeader>
-              <CardTitle>Profile Information</CardTitle>
+              <CardTitle className="text-lg font-bold">Profile Information</CardTitle>
               <CardDescription>
                 Update your account profile information
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-violet-500/25">
                   {settings.name.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div>
@@ -273,9 +273,9 @@ export default function SettingsPage() {
 
         {/* Notifications Tab */}
         <TabsContent value="notifications">
-          <Card>
+          <Card className="border-0 shadow-sm">
             <CardHeader>
-              <CardTitle>Notification Preferences</CardTitle>
+              <CardTitle className="text-lg font-bold">Notification Preferences</CardTitle>
               <CardDescription>
                 Configure how you want to receive notifications
               </CardDescription>
@@ -358,9 +358,9 @@ export default function SettingsPage() {
 
         {/* AI Settings Tab */}
         <TabsContent value="ai">
-          <Card>
+          <Card className="border-0 shadow-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg font-bold">
                 <Sparkles className="h-5 w-5 text-purple-600" />
                 AI Configuration
               </CardTitle>
@@ -393,8 +393,8 @@ export default function SettingsPage() {
 
               <Separator />
 
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                <h4 className="font-medium text-purple-900 mb-2">AI Model Information</h4>
+              <div className="p-4 bg-gradient-to-r from-violet-50 to-indigo-50 rounded-xl border border-violet-200/60">
+                <h4 className="font-bold text-violet-900 mb-2">AI Model Information</h4>
                 <p className="text-sm text-purple-700">
                   This application uses <strong>LLaMA 3.1 70B</strong> via Groq for generating 
                   intelligent, context-aware reminder messages. The model analyzes task details, 
@@ -435,9 +435,9 @@ export default function SettingsPage() {
 
         {/* Security Tab */}
         <TabsContent value="security">
-          <Card>
+          <Card className="border-0 shadow-sm">
             <CardHeader>
-              <CardTitle>Security Settings</CardTitle>
+              <CardTitle className="text-lg font-bold">Security Settings</CardTitle>
               <CardDescription>
                 Update your password and security preferences
               </CardDescription>
@@ -511,8 +511,8 @@ export default function SettingsPage() {
 
               <Separator />
 
-              <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                <h4 className="font-medium text-red-900 mb-2">Danger Zone</h4>
+              <div className="p-5 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-200/60">
+                <h4 className="font-bold text-red-900 mb-2">Danger Zone</h4>
                 <p className="text-sm text-red-700 mb-4">
                   Deleting your account will permanently remove all your data including 
                   tasks, reminders, and automation rules. This action cannot be undone.

@@ -154,19 +154,19 @@ export default function DashboardNav({ user }: DashboardNavProps) {
     .slice(0, 2)
 
   return (
-    <header className="sticky top-0 z-50 h-16 glass border-b border-gray-200/50">
+    <header className="sticky top-0 z-50 h-16 bg-white/70 backdrop-blur-xl border-b border-gray-200/40 shadow-sm">
       <div className="flex items-center justify-between h-full px-4 lg:px-6">
         {/* Left side */}
         <div className="flex items-center gap-4">
-          <button className="lg:hidden p-2 hover:bg-gray-100 rounded-lg">
-            <Menu className="h-5 w-5" />
+          <button className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <Menu className="h-5 w-5 text-gray-600" />
           </button>
           
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-lg gradient-bg flex items-center justify-center">
-              <Bell className="h-5 w-5 text-white" />
+          <Link href="/dashboard" className="flex items-center gap-2.5 group">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-md shadow-violet-500/20 group-hover:shadow-lg group-hover:shadow-violet-500/30 transition-shadow">
+              <Bell className="h-4.5 w-4.5 text-white" />
             </div>
-            <span className="text-lg font-bold hidden sm:block gradient-text">Chaser Agent</span>
+            <span className="text-lg font-bold hidden sm:block bg-gradient-to-r from-violet-700 to-indigo-600 bg-clip-text text-transparent">Chaser Agent</span>
           </Link>
         </div>
 
@@ -175,8 +175,8 @@ export default function DashboardNav({ user }: DashboardNavProps) {
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search tasks..."
-              className="pl-10 pr-10 bg-gray-50 border-gray-200"
+              placeholder="Search tasks, assignees..."
+              className="pl-10 pr-10 bg-gray-50/80 border-gray-200/60 rounded-xl focus:bg-white focus:shadow-md focus:border-violet-300 transition-all"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => searchQuery.length >= 2 && setShowResults(true)}
@@ -192,7 +192,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
             
             {/* Search Results Dropdown */}
             {showResults && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border max-h-80 overflow-y-auto z-50">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl shadow-gray-200/50 border border-gray-100 max-h-80 overflow-y-auto z-50 animate-slideUp">
                 {isSearching ? (
                   <div className="p-4 text-center text-gray-500">
                     <Loader2 className="h-5 w-5 animate-spin mx-auto" />
@@ -239,7 +239,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <Link href="/dashboard/tasks/new">
-            <Button size="sm" className="gap-2 gradient-bg hover:shadow-glow">
+            <Button size="sm" className="gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-md shadow-violet-500/20 hover:shadow-lg hover:shadow-violet-500/30 rounded-xl transition-all">
               <Plus className="h-4 w-4" />
               <span className="hidden sm:inline">New Task</span>
             </Button>
@@ -248,14 +248,14 @@ export default function DashboardNav({ user }: DashboardNavProps) {
           {/* Notifications Dropdown */}
           <DropdownMenu onOpenChange={(open) => open && fetchNotifications()}>
             <DropdownMenuTrigger asChild>
-              <button className="relative p-2 hover:bg-gray-100 rounded-lg">
-                <Bell className="h-5 w-5 text-gray-600" />
+              <button className="relative p-2 hover:bg-violet-50 rounded-xl transition-colors">
+                <Bell className="h-5 w-5 text-gray-500 hover:text-violet-600 transition-colors" />
                 {unreadCount > 0 && (
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+                  <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white animate-pulse" />
                 )}
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-80">
+            <DropdownMenuContent align="end" className="w-80 rounded-xl shadow-xl shadow-gray-200/50 border-gray-100">
               <DropdownMenuLabel className="flex items-center justify-between">
                 <span>Notifications</span>
                 {unreadCount > 0 && (
@@ -334,13 +334,13 @@ export default function DashboardNav({ user }: DashboardNavProps) {
           {/* User menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-2 p-1 hover:bg-gray-100 rounded-lg">
-                <Avatar className="h-8 w-8">
-                  <AvatarFallback className="bg-violet-100 text-violet-600 text-sm">
+              <button className="flex items-center gap-2.5 p-1.5 hover:bg-gray-50 rounded-xl transition-colors">
+                <Avatar className="h-8 w-8 ring-2 ring-violet-100">
+                  <AvatarFallback className="bg-gradient-to-br from-violet-500 to-indigo-600 text-white text-xs font-semibold">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
-                <span className="hidden lg:block text-sm font-medium">{user.name}</span>
+                <span className="hidden lg:block text-sm font-medium text-gray-700">{user.name}</span>
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">

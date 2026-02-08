@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -55,7 +53,6 @@
   * { @apply border-border; }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
   }
@@ -152,3 +149,14 @@ a, button { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 .badge-yellow { @apply bg-yellow-50 text-yellow-700 border border-yellow-200; }
 .badge-gray { @apply bg-gray-50 text-gray-600 border border-gray-200; }
 .badge-red { @apply bg-red-50 text-red-700 border border-red-200; }
+
+/* Page enter animation */
+.page-enter { animation: smoothReveal 0.5s ease forwards; }
+
+/* Gradient border top for cards */
+.card-gradient-top { position: relative; overflow: hidden; }
+.card-gradient-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7c3aed, #6366f1, #a78bfa); }
+
+/* Sidebar active indicator */
+.sidebar-active { position: relative; }
+.sidebar-active::before { content: ''; position: absolute; left: 0; top: 20%; bottom: 20%; width: 3px; border-radius: 0 4px 4px 0; background: linear-gradient(180deg, #7c3aed, #6366f1); }

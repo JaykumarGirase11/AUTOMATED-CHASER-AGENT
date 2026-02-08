@@ -96,19 +96,19 @@ function generateFallbackMessage(context: MessageContext, tone: 'friendly' | 'fi
   
   const templates = {
     friendly: {
-      subject: `👋 Friendly Reminder: ${context.taskTitle}`,
+      subject: `Friendly Reminder: ${context.taskTitle}`,
       body: `Hi ${firstName},\n\nThis is a friendly reminder that your task "${context.taskTitle}" is due ${context.daysRemaining === 0 ? 'today' : `in ${context.daysRemaining} days`}.\n\nPlease let me know if you need any help or have questions!\n\nBest regards`,
     },
     firm: {
-      subject: `⏰ Action Required: ${context.taskTitle}`,
+      subject: `Action Required: ${context.taskTitle}`,
       body: `Hi ${firstName},\n\nThis is a reminder that "${context.taskTitle}" requires your attention. The deadline is ${context.deadline}.\n\nPlease update the task status or reach out if you're facing any blockers.\n\nThank you`,
     },
     urgent: {
-      subject: `🚨 URGENT: ${context.taskTitle} - Immediate Action Required`,
+      subject: `URGENT: ${context.taskTitle} - Immediate Action Required`,
       body: `Hi ${firstName},\n\nThis is an urgent reminder about "${context.taskTitle}". The deadline is ${context.daysRemaining <= 0 ? 'today' : 'approaching very soon'}.\n\nThis is a ${context.priority} priority task and requires immediate attention. Please take action now or escalate if you're blocked.\n\nThank you`,
     },
     escalation: {
-      subject: `🔴 OVERDUE: ${context.taskTitle} - Escalation Required`,
+      subject: `OVERDUE: ${context.taskTitle} - Escalation Required`,
       body: `Hi ${firstName},\n\n"${context.taskTitle}" is now ${Math.abs(context.daysRemaining)} days overdue. This is reminder #${context.reminderCount}.\n\nImmediate action is required. If you're unable to complete this task, please escalate to your manager immediately.\n\nThis matter will be escalated if not addressed today.`,
     },
   }
@@ -142,9 +142,9 @@ Return just the message text, no JSON.`
     })
 
     return completion.choices[0]?.message?.content || 
-      `Hey ${firstName}! Just checking in on "${taskTitle}". Let me know if you need anything! 👋`
+      `Hey ${firstName}! Just checking in on "${taskTitle}". Let me know if you need anything!`
   } catch (error) {
-    return `Hey ${firstName}! Quick reminder about "${taskTitle}". Let me know if you need any help! 👋`
+    return `Hey ${firstName}! Quick reminder about "${taskTitle}". Let me know if you need any help!`
   }
 }
 

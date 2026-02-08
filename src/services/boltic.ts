@@ -20,7 +20,7 @@ export interface BolticPayload {
 
 export async function triggerBolticWorkflow(payload: BolticPayload): Promise<{ success: boolean; error?: string }> {
   if (!BOLTIC_WEBHOOK_URL) {
-    console.warn('⚠️ Boltic webhook URL not configured')
+    console.warn('[Boltic] Webhook URL not configured')
     return { success: false, error: 'Boltic webhook URL not configured' }
   }
 
@@ -32,7 +32,7 @@ export async function triggerBolticWorkflow(payload: BolticPayload): Promise<{ s
       timeout: 10000,
     })
 
-    console.log('✅ Boltic workflow triggered:', response.status)
+    console.log('[Boltic] Workflow triggered:', response.status)
     return { success: true }
   } catch (error: any) {
     console.error('❌ Boltic webhook error:', error.message)

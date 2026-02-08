@@ -25,7 +25,7 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
       text: options.text || options.html.replace(/<[^>]*>/g, ''),
     })
 
-    console.log('📧 Email sent:', info.messageId)
+    console.log('[Email] Sent:', info.messageId)
     return { success: true, messageId: info.messageId }
   } catch (error: any) {
     console.error('❌ Email error:', error.message)
@@ -70,10 +70,10 @@ export function generateReminderEmailHTML({
   }
 
   const toneEmojis = {
-    friendly: '👋',
-    firm: '⏰',
-    urgent: '🚨',
-    escalation: '🔴',
+    friendly: '',
+    firm: '',
+    urgent: '',
+    escalation: '',
   }
 
   const deadlineText = daysRemaining < 0 
@@ -99,7 +99,7 @@ export function generateReminderEmailHTML({
           <tr>
             <td style="background: linear-gradient(135deg, ${toneColors[tone]} 0%, ${toneColors[tone]}dd 100%); padding: 30px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 24px;">
-                ${toneEmojis[tone]} Task Reminder
+                ${toneEmojis[tone] ? toneEmojis[tone] + ' ' : ''}Task Reminder
               </h1>
               <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 14px;">
                 Reminder #${reminderCount}
@@ -153,7 +153,7 @@ export function generateReminderEmailHTML({
                 </div>
                 <div style="background-color: ${daysRemaining < 0 ? '#fef2f2' : daysRemaining === 0 ? '#fffbeb' : '#f0fdf4'}; padding: 15px 20px; text-align: center;">
                   <p style="margin: 0; color: ${daysRemaining < 0 ? '#dc2626' : daysRemaining === 0 ? '#d97706' : '#16a34a'}; font-weight: 600;">
-                    ⏱️ ${deadlineText}
+                    ${deadlineText}
                   </p>
                 </div>
               </div>
@@ -197,10 +197,10 @@ export function generateReminderEmailHTML({
 
 export function generateEmailSubject(taskTitle: string, tone: 'friendly' | 'firm' | 'urgent' | 'escalation', reminderCount: number): string {
   const prefixes = {
-    friendly: '👋 Reminder:',
-    firm: '⏰ Action Required:',
-    urgent: '🚨 URGENT:',
-    escalation: '🔴 OVERDUE:',
+    friendly: 'Reminder:',
+    firm: 'Action Required:',
+    urgent: 'URGENT:',
+    escalation: 'OVERDUE:',
   }
   
   const suffix = reminderCount > 1 ? ` (Reminder #${reminderCount})` : ''

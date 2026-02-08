@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
     // Send OTP via email
     const emailResult = await sendEmail({
       to: email,
-      subject: `🔐 Your Verification Code: ${otp}`,
+      subject: `Your Verification Code: ${otp}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
             <!-- Header -->
             <tr>
               <td style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 30px; text-align: center; border-radius: 16px 16px 0 0;">
-                <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🔔 Chaser Agent</h1>
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Chaser Agent</h1>
               </td>
             </tr>
             
@@ -126,7 +126,7 @@ export async function POST(request: NextRequest) {
             <tr>
               <td style="background-color: #f9fafb; padding: 20px; text-align: center; border-radius: 0 0 16px 16px; border-top: 1px solid #e5e7eb;">
                 <p style="color: #9ca3af; margin: 0; font-size: 11px;">
-                  Sent by <strong>Automated Chaser Agent</strong> 🚀
+                  Sent by <strong>Automated Chaser Agent</strong>
                 </p>
               </td>
             </tr>

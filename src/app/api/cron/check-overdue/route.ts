@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
       status: { $nin: ['completed', 'overdue'] }
     }).populate('createdBy', 'name email')
 
-    console.log(`📋 Found ${overdueTasks.length} tasks that are now overdue`)
+    console.log(`[Overdue] Found ${overdueTasks.length} tasks that are now overdue`)
 
     const results = {
       total: overdueTasks.length,
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
           const emailHtml = `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
               <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); padding: 30px; border-radius: 10px 10px 0 0;">
-                <h1 style="color: white; margin: 0; font-size: 24px;">⚠️ Task Overdue Alert!</h1>
+                <h1 style="color: white; margin: 0; font-size: 24px;">Task Overdue Alert</h1>
               </div>
               
               <div style="background: #fff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
@@ -105,11 +105,11 @@ export async function GET(request: NextRequest) {
 
           await sendEmail({
             to: user.email,
-            subject: `⚠️ OVERDUE: "${task.title}" - Action Required!`,
+            subject: `OVERDUE: "${task.title}" - Action Required`,
             html: emailHtml
           })
           results.emailsSent++
-          console.log(`📧 Overdue notification sent to ${user.email} for task: ${task.title}`)
+          console.log(`[Email] Overdue notification sent to ${user.email} for task: ${task.title}`)
         }
 
         // Also send to assignee
@@ -117,7 +117,7 @@ export async function GET(request: NextRequest) {
           const assigneeEmailHtml = `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
               <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); padding: 30px; border-radius: 10px 10px 0 0;">
-                <h1 style="color: white; margin: 0; font-size: 24px;">⚠️ Your Task is Overdue!</h1>
+                <h1 style="color: white; margin: 0; font-size: 24px;">Your Task is Overdue</h1>
               </div>
               
               <div style="background: #fff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
@@ -153,11 +153,11 @@ export async function GET(request: NextRequest) {
 
           await sendEmail({
             to: task.assigneeEmail,
-            subject: `⚠️ OVERDUE: "${task.title}" - Please Complete ASAP!`,
+            subject: `OVERDUE: "${task.title}" - Please Complete ASAP`,
             html: assigneeEmailHtml
           })
           results.emailsSent++
-          console.log(`📧 Overdue notification sent to assignee ${task.assigneeEmail}`)
+          console.log(`[Email] Overdue notification sent to assignee ${task.assigneeEmail}`)
         }
 
       } catch (error: any) {
@@ -166,7 +166,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    console.log(`✅ Overdue check complete: ${results.updated} tasks updated, ${results.emailsSent} emails sent`)
+    console.log(`[Overdue] Check complete: ${results.updated} tasks updated, ${results.emailsSent} emails sent`)
 
     return NextResponse.json({
       success: true,

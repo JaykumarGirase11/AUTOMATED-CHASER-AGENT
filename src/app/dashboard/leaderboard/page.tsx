@@ -146,10 +146,10 @@ export default function LeaderboardPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Leaderboard</h1>
-          <p className="text-gray-500">Compete with others and earn badges</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Leaderboard</h1>
+          <p className="text-gray-500 mt-1">Compete with others and earn badges</p>
         </div>
-        <Button variant="outline" onClick={fetchData}>
+        <Button variant="outline" onClick={fetchData} className="rounded-xl">
           <RefreshCw className="h-4 w-4 mr-2" />
           Refresh
         </Button>
@@ -158,15 +158,15 @@ export default function LeaderboardPage() {
       {/* User Stats & Badges */}
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Your Stats */}
-        <Card className="lg:col-span-1">
+        <Card className="lg:col-span-1 border-0 shadow-sm card-gradient-top">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Your Stats</CardTitle>
+            <CardTitle className="text-base font-bold">Your Stats</CardTitle>
           </CardHeader>
           <CardContent>
             {userStats && (
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-violet-500/25">
                     {userStats.name.charAt(0)}
                   </div>
                   <div>
@@ -179,21 +179,21 @@ export default function LeaderboardPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 text-center">
-                  <div className="p-3 bg-blue-50 rounded-lg">
-                    <p className="text-2xl font-bold text-blue-600">{userStats.points}</p>
-                    <p className="text-xs text-gray-500">Points</p>
+                  <div className="p-3 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl">
+                    <p className="text-2xl font-extrabold text-blue-600">{userStats.points}</p>
+                    <p className="text-xs font-medium text-gray-400">Points</p>
                   </div>
-                  <div className="p-3 bg-orange-50 rounded-lg">
-                    <p className="text-2xl font-bold text-orange-600">{userStats.streak}</p>
-                    <p className="text-xs text-gray-500">Day Streak</p>
+                  <div className="p-3 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl">
+                    <p className="text-2xl font-extrabold text-orange-600">{userStats.streak}</p>
+                    <p className="text-xs font-medium text-gray-400">Day Streak</p>
                   </div>
-                  <div className="p-3 bg-green-50 rounded-lg">
-                    <p className="text-2xl font-bold text-green-600">{userStats.tasksCompleted}</p>
-                    <p className="text-xs text-gray-500">Completed</p>
+                  <div className="p-3 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl">
+                    <p className="text-2xl font-extrabold text-emerald-600">{userStats.tasksCompleted}</p>
+                    <p className="text-xs font-medium text-gray-400">Completed</p>
                   </div>
-                  <div className="p-3 bg-purple-50 rounded-lg">
-                    <p className="text-2xl font-bold text-purple-600">{userStats.onTimeRate}%</p>
-                    <p className="text-xs text-gray-500">On-Time</p>
+                  <div className="p-3 bg-gradient-to-br from-violet-50 to-purple-50 rounded-xl">
+                    <p className="text-2xl font-extrabold text-violet-600">{userStats.onTimeRate}%</p>
+                    <p className="text-xs font-medium text-gray-400">On-Time</p>
                   </div>
                 </div>
 
@@ -212,9 +212,9 @@ export default function LeaderboardPage() {
         </Card>
 
         {/* Badges */}
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2 border-0 shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2">
+            <CardTitle className="text-base font-bold flex items-center gap-2">
               <Award className="h-5 w-5 text-yellow-500" />
               Badges
             </CardTitle>
@@ -231,10 +231,10 @@ export default function LeaderboardPage() {
                 return (
                   <div
                     key={badge.id}
-                    className={`p-4 rounded-lg border-2 text-center transition-all ${
+                    className={`p-4 rounded-2xl border-2 text-center transition-all hover:scale-[1.02] ${
                       earned
-                        ? 'border-yellow-300 bg-yellow-50'
-                        : 'border-gray-200 bg-gray-50 opacity-50'
+                        ? 'border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-50 shadow-sm'
+                        : 'border-gray-100 bg-gray-50/50 opacity-50'
                     }`}
                   >
                     <IconComponent className={`h-8 w-8 mx-auto mb-2 ${
@@ -254,11 +254,11 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Leaderboard Table */}
-      <Card>
+      <Card className="border-0 shadow-sm card-gradient-top">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg font-bold">
                 <Trophy className="h-5 w-5 text-yellow-500" />
                 Top Performers
               </CardTitle>
@@ -280,10 +280,10 @@ export default function LeaderboardPage() {
             {leaderboard.map((entry) => (
               <div
                 key={entry.rank}
-                className={`flex items-center gap-4 p-4 rounded-lg transition-colors ${
+                className={`flex items-center gap-4 p-4 rounded-xl transition-all ${
                   entry.isCurrentUser
-                    ? 'bg-blue-50 border-2 border-blue-200'
-                    : 'bg-gray-50 hover:bg-gray-100'
+                    ? 'bg-gradient-to-r from-violet-50 to-indigo-50 border-2 border-violet-200 shadow-sm'
+                    : 'bg-gray-50/50 hover:bg-gray-100/50 border border-transparent'
                 }`}
               >
                 <div className="w-8 flex justify-center">
@@ -291,7 +291,7 @@ export default function LeaderboardPage() {
                 </div>
 
                 <div className="flex-1 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md shadow-violet-500/20">
                     {entry.name.charAt(0)}
                   </div>
                   <div>
@@ -326,9 +326,9 @@ export default function LeaderboardPage() {
       </Card>
 
       {/* How Points Work */}
-      <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+      <Card className="bg-gradient-to-r from-violet-50 to-indigo-50 border-violet-200/60 shadow-sm">
         <CardHeader>
-          <CardTitle className="text-base">How to Earn Points</CardTitle>
+          <CardTitle className="text-base font-bold">How to Earn Points</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-4 gap-4 text-sm">

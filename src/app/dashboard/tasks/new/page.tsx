@@ -57,7 +57,7 @@ export default function NewTaskPage() {
       }
 
       toast({
-        title: 'Task Created! 🎉',
+        title: 'Task created successfully',
         description: 'Reminder schedule activated',
       })
 
@@ -192,9 +192,9 @@ export default function NewTaskPage() {
                     <SelectValue placeholder="Select priority" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="high">🔴 High</SelectItem>
-                    <SelectItem value="medium">🟡 Medium</SelectItem>
-                    <SelectItem value="low">🟢 Low</SelectItem>
+                    <SelectItem value="high">High</SelectItem>
+                    <SelectItem value="medium">Medium</SelectItem>
+                    <SelectItem value="low">Low</SelectItem>
                   </SelectContent>
                 </Select>
                 {errors.priority && (
@@ -216,7 +216,7 @@ export default function NewTaskPage() {
 
             {/* Info Box */}
             <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
-              <h4 className="font-medium text-blue-900 mb-2">🤖 Automated Reminders</h4>
+              <h4 className="font-medium text-blue-900 mb-2">Automated Reminders</h4>
               <ul className="text-sm text-blue-700 space-y-1">
                 <li>• 3 days before deadline - Friendly reminder</li>
                 <li>• 1 day before deadline - Urgent reminder</li>

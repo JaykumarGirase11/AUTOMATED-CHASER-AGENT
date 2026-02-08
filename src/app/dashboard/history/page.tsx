@@ -133,17 +133,17 @@ export default function HistoryPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Reminder History</h1>
-          <p className="text-gray-500">View all sent reminders and their delivery status</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Reminder History</h1>
+          <p className="text-gray-500 mt-1">View all sent reminders and their delivery status</p>
         </div>
-        <Button variant="outline" onClick={() => fetchLogs(pagination.page)}>
+        <Button variant="outline" onClick={() => fetchLogs(pagination.page)} className="rounded-xl">
           <RefreshCw className="h-4 w-4 mr-2" />
           Refresh
         </Button>
       </div>
 
       {/* Filters */}
-      <Card>
+      <Card className="border-0 shadow-sm">
         <CardContent className="pt-6">
           <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
@@ -184,61 +184,61 @@ export default function HistoryPage() {
       </Card>
 
       {/* Stats Summary */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger">
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Mail className="h-5 w-5 text-blue-600" />
+              <div className="p-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-md shadow-blue-500/20">
+                <Mail className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{pagination.total}</p>
-                <p className="text-sm text-gray-500">Total Reminders</p>
+                <p className="text-2xl font-extrabold text-gray-900">{pagination.total}</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">Total Reminders</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-green-600" />
+              <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-md shadow-emerald-500/20">
+                <CheckCircle className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">
+                <p className="text-2xl font-extrabold text-gray-900">
                   {logs.filter(l => l.status === 'sent').length}
                 </p>
-                <p className="text-sm text-gray-500">Sent</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">Sent</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <XCircle className="h-5 w-5 text-red-600" />
+              <div className="p-2.5 bg-gradient-to-br from-red-500 to-rose-600 rounded-xl shadow-md shadow-red-500/20">
+                <XCircle className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">
+                <p className="text-2xl font-extrabold text-gray-900">
                   {logs.filter(l => l.status === 'failed').length}
                 </p>
-                <p className="text-sm text-gray-500">Failed</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">Failed</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <Sparkles className="h-5 w-5 text-purple-600" />
+              <div className="p-2.5 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl shadow-md shadow-violet-500/20">
+                <Sparkles className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">
+                <p className="text-2xl font-extrabold text-gray-900">
                   {logs.filter(l => l.isAIGenerated).length}
                 </p>
-                <p className="text-sm text-gray-500">AI Generated</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">AI Generated</p>
               </div>
             </div>
           </CardContent>
@@ -246,9 +246,9 @@ export default function HistoryPage() {
       </div>
 
       {/* Logs List */}
-      <Card>
+      <Card className="border-0 shadow-sm card-gradient-top">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg font-bold">
             <Clock className="h-5 w-5" />
             Recent Reminders
           </CardTitle>
@@ -285,7 +285,7 @@ export default function HistoryPage() {
               {filteredLogs.map((log) => (
                 <div
                   key={log._id}
-                  className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-violet-50/30 hover:border-violet-100 transition-all duration-200"
                 >
                   <div className={`p-2 rounded-full flex-shrink-0 ${
                     log.status === 'sent' 

@@ -120,7 +120,7 @@ export default function TasksPage() {
       
       if (res.ok) {
         toast({ 
-          title: 'Reminder sent! 🔔', 
+          title: 'Reminder sent successfully', 
           description: data.reminder.isAIGenerated ? 'AI-powered message sent' : 'Reminder sent successfully',
         })
         // Update reminder count locally
@@ -157,7 +157,7 @@ export default function TasksPage() {
       
       if (res.ok) {
         toast({ 
-          title: `Sent ${data.summary.sent} reminders! 🔔`, 
+          title: `${data.summary.sent} reminders sent successfully`, 
           description: `${data.summary.failed} failed`,
         })
         setSelectedTasks([])
@@ -197,11 +197,11 @@ export default function TasksPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Tasks</h1>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Tasks</h1>
           <p className="text-gray-500 mt-1">Manage and track all your tasks</p>
         </div>
         <Link href="/dashboard/tasks/new">
-          <Button className="gap-2">
+          <Button className="gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-md shadow-violet-500/20 rounded-xl">
             <Plus className="h-4 w-4" />
             New Task
           </Button>
@@ -209,7 +209,7 @@ export default function TasksPage() {
       </div>
 
       {/* Filters */}
-      <Card>
+      <Card className="border-0 shadow-sm">
         <CardContent className="p-4">
           <div className="flex flex-col lg:flex-row gap-4">
             <form onSubmit={handleSearch} className="flex-1">
@@ -254,11 +254,11 @@ export default function TasksPage() {
 
           {/* Bulk Actions */}
           {selectedTasks.length > 0 && (
-            <div className="mt-4 flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
-              <span className="text-sm text-blue-700">
+            <div className="mt-4 flex items-center gap-3 p-3 bg-violet-50 rounded-xl border border-violet-100">
+              <span className="text-sm font-medium text-violet-700">
                 {selectedTasks.length} task(s) selected
               </span>
-              <Button size="sm" onClick={handleBulkReminder} className="gap-2">
+              <Button size="sm" onClick={handleBulkReminder} className="gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-lg">
                 <Bell className="h-4 w-4" />
                 Send Bulk Reminder
               </Button>
@@ -271,7 +271,7 @@ export default function TasksPage() {
       </Card>
 
       {/* Tasks List */}
-      <Card>
+      <Card className="border-0 shadow-sm overflow-hidden">
         <CardContent className="p-0">
           {loading ? (
             <div className="p-6 space-y-4">
@@ -283,12 +283,14 @@ export default function TasksPage() {
               ))}
             </div>
           ) : tasks.length === 0 ? (
-            <div className="text-center py-16">
-              <CheckCircle className="h-16 w-16 mx-auto text-gray-300 mb-4" />
-              <h3 className="text-lg font-medium text-gray-900">No tasks found</h3>
+            <div className="text-center py-20">
+              <div className="w-20 h-20 mx-auto mb-5 rounded-full bg-gray-50 flex items-center justify-center">
+                <CheckCircle className="h-10 w-10 text-gray-300" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">No tasks found</h3>
               <p className="text-gray-500 mt-1">Create your first task to get started</p>
               <Link href="/dashboard/tasks/new">
-                <Button className="mt-4 gap-2">
+                <Button className="mt-5 gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-xl shadow-md">
                   <Plus className="h-4 w-4" />
                   Create Task
                 </Button>
@@ -297,7 +299,7 @@ export default function TasksPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50 border-b">
+                <thead className="bg-gradient-to-r from-gray-50 to-gray-50/50 border-b border-gray-100">
                   <tr>
                     <th className="px-4 py-3 text-left">
                       <Checkbox 
@@ -305,18 +307,18 @@ export default function TasksPage() {
                         onCheckedChange={toggleSelectAll}
                       />
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Task</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Assignee</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Priority</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Status</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Deadline</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Reminders</th>
-                    <th className="px-4 py-3 text-right text-sm font-medium text-gray-500">Actions</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Task</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Assignee</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Priority</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Status</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Deadline</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-400">Reminders</th>
+                    <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wider text-gray-400">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y">
                   {tasks.map((task) => (
-                    <tr key={task._id} className="hover:bg-gray-50">
+                    <tr key={task._id} className="hover:bg-violet-50/30 transition-colors">
                       <td className="px-4 py-4">
                         <Checkbox 
                           checked={selectedTasks.includes(task._id)}
@@ -326,7 +328,7 @@ export default function TasksPage() {
                       <td className="px-4 py-4">
                         <div className="flex items-start gap-2">
                           {task.isDelayRisk && (
-                            <span className="text-red-500" title="High delay risk">⚠️</span>
+                            <span className="text-red-500 text-xs font-semibold" title="High delay risk">!</span>
                           )}
                           <div>
                             <Link 

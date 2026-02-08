@@ -11,7 +11,7 @@ export default function AutomationRunner() {
 
   const runAutomation = async () => {
     try {
-      console.log('🤖 Running automatic checks...')
+      console.log('[Automation] Running automatic checks...')
       
       // Check for overdue tasks and update status + send emails
       const overdueRes = await fetch('/api/cron/check-overdue', { 
@@ -21,10 +21,10 @@ export default function AutomationRunner() {
       const overdueData = await overdueRes.json()
       
       if (overdueData.results?.updated > 0) {
-        console.log(`✅ Marked ${overdueData.results.updated} tasks as overdue`)
+        console.log(`[Overdue] Marked ${overdueData.results.updated} tasks as overdue`)
       }
       if (overdueData.results?.emailsSent > 0) {
-        console.log(`📧 Sent ${overdueData.results.emailsSent} overdue notification emails`)
+        console.log(`[Overdue] Sent ${overdueData.results.emailsSent} overdue notification emails`)
       }
 
       // Run automation rules
@@ -35,10 +35,10 @@ export default function AutomationRunner() {
       const automationData = await automationRes.json()
       
       if (automationData.results?.remindersSent > 0) {
-        console.log(`📧 Sent ${automationData.results.remindersSent} automated reminders`)
+        console.log(`[Automation] Sent ${automationData.results.remindersSent} automated reminders`)
       }
 
-      console.log('🤖 Automatic checks completed')
+      console.log('[Automation] Automatic checks completed')
     } catch (error) {
       console.error('Automation check failed:', error)
     }

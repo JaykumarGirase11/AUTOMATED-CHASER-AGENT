@@ -68,10 +68,10 @@ export function getPriorityColor(priority: string): string {
 
 export function getPriorityIcon(priority: string): string {
   switch (priority) {
-    case 'high': return '🔴'
-    case 'medium': return '🟡'
-    case 'low': return '🟢'
-    default: return '⚪'
+    case 'high': return '●'
+    case 'medium': return '●'
+    case 'low': return '●'
+    default: return '○'
   }
 }
 

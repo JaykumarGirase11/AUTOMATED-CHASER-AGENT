@@ -112,29 +112,29 @@ function StatCard({
   color?: 'blue' | 'green' | 'red' | 'yellow'
 }) {
   const colors = {
-    blue: 'bg-violet-50 text-violet-600',
-    green: 'bg-green-50 text-green-600',
-    red: 'bg-red-50 text-red-600',
-    yellow: 'bg-yellow-50 text-yellow-600',
+    blue: 'bg-gradient-to-br from-violet-500 to-indigo-600 text-white shadow-violet-500/25',
+    green: 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-emerald-500/25',
+    red: 'bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-red-500/25',
+    yellow: 'bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-amber-500/25',
   }
 
   return (
-    <Card className="card-hover">
+    <Card className="card-hover border-0 shadow-sm hover:shadow-md overflow-hidden">
       <CardContent className="p-6">
         <div className="flex items-start justify-between">
-          <div>
-            <p className="text-sm text-gray-500">{title}</p>
-            <p className="text-3xl font-bold mt-1">{value}</p>
-            <p className="text-sm text-gray-500 mt-1">{description}</p>
+          <div className="space-y-1">
+            <p className="text-sm font-medium text-gray-400 uppercase tracking-wide">{title}</p>
+            <p className="text-3xl font-extrabold text-gray-900 tracking-tight">{value}</p>
+            <p className="text-sm text-gray-500">{description}</p>
           </div>
-          <div className={`p-3 rounded-lg ${colors[color]}`}>
+          <div className={`p-3 rounded-2xl shadow-lg ${colors[color]}`}>
             <Icon className="h-6 w-6" />
           </div>
         </div>
         {trend && (
-          <div className="flex items-center gap-1 mt-3 text-sm text-green-600">
-            <TrendingUp className="h-4 w-4" />
-            {trend}
+          <div className="flex items-center gap-1 mt-4 text-sm text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full w-fit">
+            <TrendingUp className="h-3.5 w-3.5" />
+            <span className="font-medium">{trend}</span>
           </div>
         )}
       </CardContent>
@@ -151,17 +151,17 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-8">
       {/* Welcome Section */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Welcome back, {user.name.split(' ')[0]}! 👋
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+            Welcome back, {user.name.split(' ')[0]}
           </h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-gray-500 mt-1.5 text-base">
             Here's what's happening with your tasks today
           </p>
         </div>
         <Link href="/dashboard/tasks/new">
-          <Button className="mt-4 md:mt-0 gap-2 gradient-bg hover:shadow-glow">
+          <Button className="mt-4 md:mt-0 gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-lg shadow-violet-500/20 hover:shadow-xl rounded-xl transition-all">
             <Sparkles className="h-4 w-4" />
             Create Task
           </Button>
@@ -169,7 +169,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 stagger">
         <StatCard
           title="Total Tasks"
           value={data.stats.totalTasks}
@@ -203,14 +203,14 @@ export default async function DashboardPage() {
       {/* Main Content Grid */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Upcoming Deadlines */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
+        <Card className="card-gradient-top border-0 shadow-sm">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
             <div>
-              <CardTitle>Upcoming Deadlines</CardTitle>
+              <CardTitle className="text-lg font-bold">Upcoming Deadlines</CardTitle>
               <CardDescription>Tasks due soon</CardDescription>
             </div>
             <Link href="/dashboard/tasks">
-              <Button variant="ghost" size="sm" className="gap-1">
+              <Button variant="ghost" size="sm" className="gap-1 text-violet-600 hover:text-violet-700 hover:bg-violet-50 rounded-lg">
                 View All <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -228,9 +228,9 @@ export default async function DashboardPage() {
               <div className="space-y-4">
                 {data.upcomingTasks.map((task: any) => (
                   <Link key={task._id} href={`/dashboard/tasks/${task._id}`}>
-                    <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center justify-between p-3 rounded-xl hover:bg-violet-50/50 transition-all duration-200 group">
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-gray-900 truncate">{task.title}</p>
+                        <p className="font-semibold text-gray-900 truncate group-hover:text-violet-700 transition-colors">{task.title}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <Badge variant="outline" className={getPriorityColor(task.priority)}>
                             {task.priority}
@@ -260,14 +260,14 @@ export default async function DashboardPage() {
         </Card>
 
         {/* Recent Reminders */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
+        <Card className="card-gradient-top border-0 shadow-sm">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
             <div>
-              <CardTitle>Recent Reminders</CardTitle>
+              <CardTitle className="text-lg font-bold">Recent Reminders</CardTitle>
               <CardDescription>Latest sent reminders</CardDescription>
             </div>
             <Link href="/dashboard/history">
-              <Button variant="ghost" size="sm" className="gap-1">
+              <Button variant="ghost" size="sm" className="gap-1 text-violet-600 hover:text-violet-700 hover:bg-violet-50 rounded-lg">
                 View All <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -281,7 +281,7 @@ export default async function DashboardPage() {
             ) : (
               <div className="space-y-4">
                 {data.recentReminders.map((reminder: any) => (
-                  <div key={reminder._id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50">
+                  <div key={reminder._id} className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50/80 transition-all">
                     <div className={`p-2 rounded-full ${
                       reminder.status === 'sent' ? 'bg-green-100 text-green-600' :
                       reminder.status === 'failed' ? 'bg-red-100 text-red-600' :
@@ -315,14 +315,14 @@ export default async function DashboardPage() {
       </div>
 
       {/* Recent Tasks */}
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
+      <Card className="card-gradient-top border-0 shadow-sm">
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
           <div>
-            <CardTitle>Recent Tasks</CardTitle>
+            <CardTitle className="text-lg font-bold">Recent Tasks</CardTitle>
             <CardDescription>Your latest created tasks</CardDescription>
           </div>
           <Link href="/dashboard/tasks">
-            <Button variant="ghost" size="sm" className="gap-1">
+            <Button variant="ghost" size="sm" className="gap-1 text-violet-600 hover:text-violet-700 hover:bg-violet-50 rounded-lg">
               View All <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
@@ -331,20 +331,20 @@ export default async function DashboardPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b text-left">
-                  <th className="pb-3 font-medium text-gray-500">Task</th>
-                  <th className="pb-3 font-medium text-gray-500">Assignee</th>
-                  <th className="pb-3 font-medium text-gray-500">Priority</th>
-                  <th className="pb-3 font-medium text-gray-500">Status</th>
-                  <th className="pb-3 font-medium text-gray-500">Deadline</th>
-                  <th className="pb-3 font-medium text-gray-500">Reminders</th>
+                <tr className="border-b border-gray-100 text-left">
+                  <th className="pb-3 font-semibold text-xs uppercase tracking-wider text-gray-400">Task</th>
+                  <th className="pb-3 font-semibold text-xs uppercase tracking-wider text-gray-400">Assignee</th>
+                  <th className="pb-3 font-semibold text-xs uppercase tracking-wider text-gray-400">Priority</th>
+                  <th className="pb-3 font-semibold text-xs uppercase tracking-wider text-gray-400">Status</th>
+                  <th className="pb-3 font-semibold text-xs uppercase tracking-wider text-gray-400">Deadline</th>
+                  <th className="pb-3 font-semibold text-xs uppercase tracking-wider text-gray-400">Reminders</th>
                 </tr>
               </thead>
               <tbody>
                 {data.recentTasks.map((task: any) => (
-                  <tr key={task._id} className="border-b last:border-0 hover:bg-gray-50">
-                    <td className="py-3">
-                      <Link href={`/dashboard/tasks/${task._id}`} className="hover:underline font-medium">
+                  <tr key={task._id} className="border-b border-gray-50 last:border-0 hover:bg-violet-50/30 transition-colors">
+                    <td className="py-3.5">
+                      <Link href={`/dashboard/tasks/${task._id}`} className="hover:text-violet-600 font-semibold text-gray-800 transition-colors">
                         {task.title}
                       </Link>
                     </td>

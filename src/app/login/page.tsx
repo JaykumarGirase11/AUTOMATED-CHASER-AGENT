@@ -79,7 +79,7 @@ export default function LoginPage() {
         setStep('otp')
         setResendTimer(60)
         toast({
-          title: "OTP Sent! 📧",
+          title: "OTP sent successfully",
           description: `Check your email: ${email}`,
         })
       } else {
@@ -157,7 +157,7 @@ export default function LoginPage() {
       if (response.ok) {
         setStep('success')
         toast({
-          title: isNewUser ? "Account Created! 🎉" : "Welcome Back! 👋",
+          title: isNewUser ? "Account created successfully" : "Welcome back",
           description: "Redirecting to dashboard...",
         })
         setTimeout(() => router.push('/dashboard'), 1500)

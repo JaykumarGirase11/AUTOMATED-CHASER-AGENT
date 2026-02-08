@@ -32,7 +32,7 @@ export async function sendEmail(options: EmailOptions): Promise<{ success: boole
     const transporter = createTransporter()
 
     const mailOptions = {
-      from: `"Chaser Agent 🔔" <${process.env.EMAIL_USER}>`,
+      from: `"Chaser Agent" <${process.env.EMAIL_USER}>`,
       to: options.to,
       subject: options.subject,
       text: options.text,
@@ -82,15 +82,15 @@ export async function sendTaskReminder(
         <!-- Header -->
         <tr>
           <td style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 30px; text-align: center;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🔔 Task Reminder</h1>
-            ${isAIGenerated ? '<p style="color: rgba(255,255,255,0.9); margin: 10px 0 0; font-size: 12px;">✨ AI-Powered Message</p>' : ''}
+            <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Task Reminder</h1>
+            ${isAIGenerated ? '<p style="color: rgba(255,255,255,0.9); margin: 10px 0 0; font-size: 12px;">AI-Powered Message</p>' : ''}
           </td>
         </tr>
         
         <!-- Greeting -->
         <tr>
           <td style="padding: 30px 30px 20px;">
-            <h2 style="color: #1f2937; margin: 0 0 10px; font-size: 20px;">Hi ${assigneeName}! 👋</h2>
+            <h2 style="color: #1f2937; margin: 0 0 10px; font-size: 20px;">Hi ${assigneeName},</h2>
             <p style="color: #6b7280; margin: 0; font-size: 14px;">This is a friendly reminder about your pending task.</p>
           </td>
         </tr>
@@ -101,18 +101,18 @@ export async function sendTaskReminder(
             <table width="100%" style="background-color: #f9fafb; border-radius: 12px; border-left: 4px solid ${urgencyColor};">
               <tr>
                 <td style="padding: 20px;">
-                  <h3 style="color: #1f2937; margin: 0 0 10px; font-size: 18px;">📋 ${taskTitle}</h3>
+                  <h3 style="color: #1f2937; margin: 0 0 10px; font-size: 18px;">${taskTitle}</h3>
                   <table width="100%">
                     <tr>
                       <td style="padding: 5px 0;">
-                        <span style="color: #6b7280; font-size: 13px;">📅 Deadline:</span>
+                        <span style="color: #6b7280; font-size: 13px;">Deadline:</span>
                         <span style="color: #1f2937; font-size: 13px; font-weight: 600;"> ${formattedDeadline}</span>
                       </td>
                     </tr>
                     <tr>
                       <td style="padding: 5px 0;">
                         <span style="background-color: ${urgencyColor}; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
-                          ⏰ ${urgencyText}
+                          ${urgencyText}
                         </span>
                       </td>
                     </tr>
@@ -148,7 +148,7 @@ export async function sendTaskReminder(
         <tr>
           <td style="background-color: #f9fafb; padding: 20px 30px; text-align: center; border-top: 1px solid #e5e7eb;">
             <p style="color: #9ca3af; margin: 0; font-size: 12px;">
-              Sent by <strong>Automated Chaser Agent</strong> 🚀
+              Sent by <strong>Automated Chaser Agent</strong>
             </p>
             <p style="color: #9ca3af; margin: 5px 0 0; font-size: 11px;">
               This is an automated reminder. Please do not reply to this email.
@@ -174,12 +174,12 @@ ${message}
 View your task at: ${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/dashboard/tasks
 
 ---
-Sent by Automated Chaser Agent 🔔
+Sent by Automated Chaser Agent
   `.trim()
 
   return sendEmail({
     to: assigneeEmail,
-    subject: `🔔 Reminder: ${taskTitle} - ${urgencyText}`,
+    subject: `Reminder: ${taskTitle} - ${urgencyText}`,
     text,
     html,
   })

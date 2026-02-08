@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
     // Get all active automation rules
     const rules = await AutomationRule.find({ isActive: true })
     
-    console.log(`🤖 Running ${rules.length} automation rules`)
+    console.log(`[Automation] Running ${rules.length} automation rules`)
 
     const results = {
       rulesProcessed: rules.length,
@@ -105,7 +105,7 @@ export async function GET(request: NextRequest) {
         }
 
         results.tasksMatched += matchingTasks.length
-        console.log(`📋 Rule "${rule.name}": ${matchingTasks.length} tasks matched`)
+        console.log(`[Rule] "${rule.name}": ${matchingTasks.length} tasks matched`)
 
         // Execute actions for matching tasks
         for (const task of matchingTasks) {
@@ -138,7 +138,7 @@ export async function GET(request: NextRequest) {
               const emailHtml = `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
                   <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 30px; border-radius: 10px 10px 0 0;">
-                    <h1 style="color: white; margin: 0; font-size: 24px;">🔔 Automated Reminder</h1>
+                    <h1 style="color: white; margin: 0; font-size: 24px;">Automated Reminder</h1>
                     <p style="color: #dbeafe; margin: 10px 0 0 0;">Rule: ${rule.name}</p>
                   </div>
                   
@@ -162,7 +162,7 @@ export async function GET(request: NextRequest) {
               // Send to assignee
               await sendEmail({
                 to: task.assigneeEmail,
-                subject: `🔔 Reminder: ${task.title}`,
+                subject: `Reminder: ${task.title}`,
                 html: emailHtml
               })
 
@@ -173,14 +173,14 @@ export async function GET(request: NextRequest) {
               })
 
               results.remindersSent++
-              console.log(`📧 Auto-reminder sent for task: ${task.title}`)
+              console.log(`[Email] Auto-reminder sent for task: ${task.title}`)
             }
 
             if (action.type === 'mark_urgent') {
               await Task.findByIdAndUpdate(task._id, {
                 priority: 'high'
               })
-              console.log(`🔴 Task marked urgent: ${task.title}`)
+              console.log(`[Priority] Task marked urgent: ${task.title}`)
             }
 
             if (action.type === 'send_escalation') {
@@ -188,10 +188,10 @@ export async function GET(request: NextRequest) {
               if (user?.email) {
                 await sendEmail({
                   to: user.email,
-                  subject: `🚨 Escalation: ${task.title} needs attention!`,
+                  subject: `Escalation: ${task.title} needs attention`,
                   html: `
                     <div style="font-family: Arial, sans-serif; padding: 20px;">
-                      <h2 style="color: #dc2626;">🚨 Task Escalation Alert</h2>
+                      <h2 style="color: #dc2626;">Task Escalation Alert</h2>
                       <p>Task <strong>${task.title}</strong> requires your immediate attention.</p>
                       <p>Assigned to: ${task.assigneeName}</p>
                       <p>Reminders sent: ${task.reminderCount}</p>
@@ -199,7 +199,7 @@ export async function GET(request: NextRequest) {
                   `
                 })
                 results.remindersSent++
-                console.log(`🚨 Escalation sent for task: ${task.title}`)
+                console.log(`[Escalation] Sent for task: ${task.title}`)
               }
             }
           }
@@ -211,7 +211,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    console.log(`✅ Automation complete: ${results.remindersSent} reminders sent`)
+    console.log(`[Automation] Complete: ${results.remindersSent} reminders sent`)
 
     return NextResponse.json({
       success: true,

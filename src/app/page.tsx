@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Bell, CheckCircle, Clock, Sparkles, Zap, BarChart3, Users } from 'lucide-react'
+import { ArrowRight, Bell, CheckCircle, Clock, Sparkles, Zap, BarChart3, Users, Trophy } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Navbar from '@/components/landing/Navbar'
 
@@ -237,7 +237,7 @@ export default function HomePage() {
             {/* Gamification */}
             <div className="col-span-3 bg-white rounded-2xl p-5 border border-gray-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-lg">🏆</span>
+                <Trophy className="h-5 w-5 text-white" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 text-sm">Gamification</h3>
@@ -338,7 +338,7 @@ export default function HomePage() {
                 Intelligent automated reminder system that eliminates manual follow-ups. Built for teams who demand efficiency.
               </p>
               <span className="inline-flex items-center gap-1.5 text-xs bg-violet-950/50 text-violet-300 px-3 py-1.5 rounded-full border border-violet-800">
-                🏆 Fynd Hiring Challenge 2026
+                Fynd Hiring Challenge 2026
               </span>
             </div>
 

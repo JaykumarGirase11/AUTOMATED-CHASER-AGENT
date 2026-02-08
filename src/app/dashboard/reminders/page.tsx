@@ -195,17 +195,18 @@ export default function RemindersPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Reminders</h1>
-          <p className="text-gray-500">Send reminders to task assignees</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Reminders</h1>
+          <p className="text-gray-500 mt-1">Send reminders to task assignees</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" onClick={fetchTasks}>
+          <Button variant="outline" onClick={fetchTasks} className="rounded-xl">
             <RefreshCw className="h-4 w-4 mr-2" />
             Refresh
           </Button>
           <Button 
             onClick={handleBulkReminders}
             disabled={sending === 'bulk'}
+            className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 rounded-xl shadow-md shadow-violet-500/20"
           >
             {sending === 'bulk' ? (
               <Loader2 className="h-4 w-4 animate-spin mr-2" />
@@ -218,55 +219,55 @@ export default function RemindersPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger">
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <AlertTriangle className="h-5 w-5 text-red-600" />
+              <div className="p-2.5 bg-gradient-to-br from-red-500 to-rose-600 rounded-xl shadow-md shadow-red-500/20">
+                <AlertTriangle className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{overdueTasks.length}</p>
-                <p className="text-sm text-gray-500">Overdue</p>
+                <p className="text-2xl font-extrabold text-gray-900">{overdueTasks.length}</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">Overdue</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-orange-100 rounded-lg">
-                <Clock className="h-5 w-5 text-orange-600" />
+              <div className="p-2.5 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl shadow-md shadow-amber-500/20">
+                <Clock className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{urgentTasks.length}</p>
-                <p className="text-sm text-gray-500">Due Soon</p>
+                <p className="text-2xl font-extrabold text-gray-900">{urgentTasks.length}</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">Due Soon</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Calendar className="h-5 w-5 text-blue-600" />
+              <div className="p-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-md shadow-blue-500/20">
+                <Calendar className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{upcomingTasks.length}</p>
-                <p className="text-sm text-gray-500">This Week</p>
+                <p className="text-2xl font-extrabold text-gray-900">{upcomingTasks.length}</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">This Week</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-green-600" />
+              <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-md shadow-emerald-500/20">
+                <CheckCircle className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold">{laterTasks.length}</p>
-                <p className="text-sm text-gray-500">Later</p>
+                <p className="text-2xl font-extrabold text-gray-900">{laterTasks.length}</p>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">Later</p>
               </div>
             </div>
           </CardContent>
@@ -274,7 +275,7 @@ export default function RemindersPage() {
       </div>
 
       {/* Filter */}
-      <Card>
+      <Card className="border-0 shadow-sm">
         <CardContent className="pt-6">
           <div className="flex items-center gap-4">
             <Filter className="h-4 w-4 text-gray-500" />
@@ -315,13 +316,13 @@ export default function RemindersPage() {
         <div className="space-y-6">
           {/* Overdue Tasks */}
           {overdueTasks.length > 0 && (
-            <Card className="border-red-200">
-              <CardHeader className="bg-red-50 rounded-t-lg">
-                <CardTitle className="text-red-700 flex items-center gap-2">
+            <Card className="border-red-200/60 shadow-sm shadow-red-500/5">
+              <CardHeader className="bg-gradient-to-r from-red-50 to-rose-50/50 rounded-t-lg">
+                <CardTitle className="text-red-700 flex items-center gap-2 text-lg">
                   <AlertTriangle className="h-5 w-5" />
                   Overdue Tasks ({overdueTasks.length})
                 </CardTitle>
-                <CardDescription className="text-red-600">
+                <CardDescription className="text-red-500">
                   These tasks need immediate attention
                 </CardDescription>
               </CardHeader>
@@ -343,9 +344,9 @@ export default function RemindersPage() {
 
           {/* Urgent Tasks */}
           {urgentTasks.length > 0 && (
-            <Card className="border-orange-200">
-              <CardHeader className="bg-orange-50 rounded-t-lg">
-                <CardTitle className="text-orange-700 flex items-center gap-2">
+            <Card className="border-orange-200/60 shadow-sm shadow-orange-500/5">
+              <CardHeader className="bg-gradient-to-r from-orange-50 to-amber-50/50 rounded-t-lg">
+                <CardTitle className="text-orange-700 flex items-center gap-2 text-lg">
                   <Clock className="h-5 w-5" />
                   Due Soon ({urgentTasks.length})
                 </CardTitle>
@@ -433,7 +434,7 @@ interface TaskRowProps {
 
 function TaskRow({ task, sending, onSendReminder, getUrgencyBadge }: TaskRowProps) {
   return (
-    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+    <div className="flex items-center justify-between p-4 bg-gray-50/50 rounded-xl hover:bg-gray-100/50 transition-all duration-200 border border-transparent hover:border-gray-200/60">
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
           <Link 

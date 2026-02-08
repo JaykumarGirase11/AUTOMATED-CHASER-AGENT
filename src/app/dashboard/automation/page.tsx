@@ -133,7 +133,7 @@ export default function AutomationPage() {
 
       if (overdueRes.ok && automationRes.ok) {
         toast({
-          title: '✅ Automation Executed!',
+          title: 'Automation executed successfully',
           description: `Overdue: ${overdueData.results?.updated || 0} tasks updated, ${overdueData.results?.emailsSent || 0} emails. Rules: ${automationData.results?.remindersSent || 0} reminders sent.`,
         })
         fetchRules() // Refresh to show updated execution counts
@@ -313,8 +313,8 @@ export default function AutomationPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Automation Rules</h1>
-          <p className="text-gray-500">
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Automation Rules</h1>
+          <p className="text-gray-500 mt-1">
             Create rules to automatically send reminders and take actions
           </p>
         </div>
@@ -323,7 +323,7 @@ export default function AutomationPage() {
             variant="default" 
             onClick={handleRunAutomation}
             disabled={runningAutomation}
-            className="bg-green-600 hover:bg-green-700"
+            className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 shadow-md shadow-emerald-500/20 rounded-xl"
           >
             {runningAutomation ? (
               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -332,13 +332,13 @@ export default function AutomationPage() {
             )}
             Run Now
           </Button>
-          <Button variant="outline" onClick={fetchRules}>
+          <Button variant="outline" onClick={fetchRules} className="rounded-xl">
             <RefreshCw className="h-4 w-4 mr-2" />
             Refresh
           </Button>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button onClick={() => handleOpenDialog()}>
+              <Button onClick={() => handleOpenDialog()} className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-md shadow-violet-500/20 rounded-xl">
                 <Plus className="h-4 w-4 mr-2" />
                 New Rule
               </Button>
@@ -487,11 +487,11 @@ export default function AutomationPage() {
       </div>
 
       {/* Info Card */}
-      <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+      <Card className="bg-gradient-to-r from-violet-50 to-indigo-50 border-violet-200/60 shadow-sm">
         <CardContent className="pt-6">
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-purple-100 rounded-full">
-              <Zap className="h-6 w-6 text-purple-600" />
+            <div className="p-3 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-2xl shadow-md shadow-violet-500/20">
+              <Zap className="h-6 w-6 text-white" />
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Powered by Boltic</h3>
@@ -523,11 +523,13 @@ export default function AutomationPage() {
           ))}
         </div>
       ) : rules.length === 0 ? (
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardContent className="pt-12 pb-12">
             <div className="text-center">
-              <Zap className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-              <h3 className="text-lg font-semibold text-gray-900">No automation rules yet</h3>
+              <div className="w-20 h-20 mx-auto mb-5 rounded-full bg-violet-50 flex items-center justify-center">
+                <Zap className="h-10 w-10 text-violet-300" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">No automation rules yet</h3>
               <p className="text-gray-500 mt-1 mb-4">
                 Create your first rule to start automating reminders
               </p>
@@ -541,14 +543,14 @@ export default function AutomationPage() {
       ) : (
         <div className="grid gap-4">
           {rules.map((rule) => (
-            <Card key={rule._id} className={!rule.isActive ? 'opacity-60' : ''}>
+            <Card key={rule._id} className={`border-0 shadow-sm hover:shadow-md transition-all ${!rule.isActive ? 'opacity-60' : ''}`}>
               <CardContent className="pt-6">
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-full ${
-                    rule.isActive ? 'bg-green-100' : 'bg-gray-100'
+                  <div className={`p-3 rounded-2xl ${
+                    rule.isActive ? 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-md shadow-emerald-500/20' : 'bg-gray-100'
                   }`}>
                     <Zap className={`h-6 w-6 ${
-                      rule.isActive ? 'text-green-600' : 'text-gray-400'
+                      rule.isActive ? 'text-white' : 'text-gray-400'
                     }`} />
                   </div>
 

@@ -209,8 +209,8 @@ export default function AnalyticsPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Analytics</h1>
-          <p className="text-gray-500">Track your task performance and reminder effectiveness</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Analytics</h1>
+          <p className="text-gray-500 mt-1">Track your task performance and reminder effectiveness</p>
         </div>
         <div className="flex items-center gap-3">
           <Select value={period} onValueChange={setPeriod}>
@@ -228,7 +228,7 @@ export default function AnalyticsPage() {
           <Button variant="outline" size="icon" onClick={fetchAnalytics}>
             <RefreshCw className="h-4 w-4" />
           </Button>
-          <Button variant="outline" onClick={exportToCSV}>
+          <Button variant="outline" onClick={exportToCSV} className="rounded-xl">
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
@@ -236,58 +236,58 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger">
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500">Total Tasks</p>
-                <p className="text-3xl font-bold">{data.overview.totalTasks}</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Total Tasks</p>
+                <p className="text-3xl font-extrabold text-gray-900">{data.overview.totalTasks}</p>
               </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <BarChart3 className="h-6 w-6 text-blue-600" />
+              <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-md shadow-blue-500/20">
+                <BarChart3 className="h-6 w-6 text-white" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500">Completion Rate</p>
-                <p className="text-3xl font-bold">{data.overview.completionRate}%</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Completion Rate</p>
+                <p className="text-3xl font-extrabold text-gray-900">{data.overview.completionRate}%</p>
               </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <TrendingUp className="h-6 w-6 text-green-600" />
+              <div className="p-3 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl shadow-md shadow-emerald-500/20">
+                <TrendingUp className="h-6 w-6 text-white" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500">Reminders Sent</p>
-                <p className="text-3xl font-bold">{data.overview.totalReminders}</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Reminders Sent</p>
+                <p className="text-3xl font-extrabold text-gray-900">{data.overview.totalReminders}</p>
               </div>
-              <div className="p-3 bg-purple-100 rounded-full">
-                <Bell className="h-6 w-6 text-purple-600" />
+              <div className="p-3 bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl shadow-md shadow-violet-500/20">
+                <Bell className="h-6 w-6 text-white" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500">Overdue Tasks</p>
-                <p className="text-3xl font-bold text-red-600">{data.overview.overdueTasks}</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Overdue Tasks</p>
+                <p className="text-3xl font-extrabold text-red-600">{data.overview.overdueTasks}</p>
               </div>
-              <div className="p-3 bg-red-100 rounded-full">
-                <AlertTriangle className="h-6 w-6 text-red-600" />
+              <div className="p-3 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl shadow-md shadow-red-500/20">
+                <AlertTriangle className="h-6 w-6 text-white" />
               </div>
             </div>
           </CardContent>
@@ -297,9 +297,9 @@ export default function AnalyticsPage() {
       {/* Charts Row 1 */}
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Task Status Distribution */}
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardHeader>
-            <CardTitle>Task Status Distribution</CardTitle>
+            <CardTitle className="text-lg font-bold">Task Status Distribution</CardTitle>
             <CardDescription>Breakdown of tasks by current status</CardDescription>
           </CardHeader>
           <CardContent>
@@ -338,9 +338,9 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Weekly Activity */}
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardHeader>
-            <CardTitle>Weekly Activity</CardTitle>
+            <CardTitle className="text-lg font-bold">Weekly Activity</CardTitle>
             <CardDescription>Tasks created vs completed over time</CardDescription>
           </CardHeader>
           <CardContent>
@@ -387,9 +387,9 @@ export default function AnalyticsPage() {
       {/* Charts Row 2 */}
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Priority Breakdown */}
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardHeader>
-            <CardTitle>Priority Distribution</CardTitle>
+            <CardTitle className="text-lg font-bold">Priority Distribution</CardTitle>
             <CardDescription>Tasks grouped by priority level</CardDescription>
           </CardHeader>
           <CardContent>
@@ -421,9 +421,9 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Reminder Trend */}
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardHeader>
-            <CardTitle>Reminder Activity</CardTitle>
+            <CardTitle className="text-lg font-bold">Reminder Activity</CardTitle>
             <CardDescription>Reminders sent over time</CardDescription>
           </CardHeader>
           <CardContent>
@@ -461,9 +461,9 @@ export default function AnalyticsPage() {
       {/* Additional Stats */}
       <div className="grid lg:grid-cols-3 gap-6">
         {/* AI vs Standard Reminders */}
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-base">AI-Powered Reminders</CardTitle>
+            <CardTitle className="text-base font-bold">AI-Powered Reminders</CardTitle>
             <CardDescription>Comparison of AI vs standard reminders</CardDescription>
           </CardHeader>
           <CardContent>
@@ -499,9 +499,9 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Top Assignees */}
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-base">Most Reminded Tasks</CardTitle>
+            <CardTitle className="text-base font-bold">Most Reminded Tasks</CardTitle>
             <CardDescription>Tasks with most reminders sent</CardDescription>
           </CardHeader>
           <CardContent>
@@ -512,7 +512,7 @@ export default function AnalyticsPage() {
                 {data.mostRemindedTasks.slice(0, 5).map((task, index: number) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-medium">
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white text-sm font-bold shadow-sm">
                         {task.assigneeName.charAt(0).toUpperCase()}
                       </div>
                       <div>
@@ -534,9 +534,9 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Performance Metrics */}
-        <Card>
+        <Card className="border-0 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-base">Performance Metrics</CardTitle>
+            <CardTitle className="text-base font-bold">Performance Metrics</CardTitle>
             <CardDescription>Key performance indicators</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">

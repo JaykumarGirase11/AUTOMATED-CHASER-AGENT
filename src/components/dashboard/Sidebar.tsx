@@ -42,23 +42,23 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white border-r transition-all duration-300 z-40 hidden lg:block",
+          "fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white/80 backdrop-blur-xl border-r border-gray-200/60 transition-all duration-300 z-40 hidden lg:flex lg:flex-col",
           collapsed ? "w-20" : "w-64"
         )}
       >
         {/* Collapse button */}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-6 w-6 h-6 bg-white border rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
+          className="absolute -right-3 top-6 w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition-all duration-200"
         >
           {collapsed ? (
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-3 w-3 text-gray-500" />
           ) : (
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-3 w-3 text-gray-500" />
           )}
         </button>
 
-        <nav className="p-4 space-y-2">
+        <nav className="p-3 space-y-1 flex-1">
           {menuItems.map((item) => {
             const isActive = pathname === item.href || 
               (item.href !== '/dashboard' && pathname.startsWith(item.href))
@@ -67,15 +67,27 @@ export default function Sidebar() {
               <Link key={item.href} href={item.href}>
                 <div
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all",
+                    "group relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200",
                     isActive
-                      ? "bg-violet-50 text-violet-600 shadow-sm"
-                      : "text-gray-600 hover:bg-violet-50/50 hover:text-violet-600"
+                      ? "bg-gradient-to-r from-violet-500/10 to-indigo-500/10 text-violet-700 shadow-sm sidebar-active"
+                      : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                   )}
                 >
-                  <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive && "text-violet-600")} />
+                  <item.icon className={cn(
+                    "h-5 w-5 flex-shrink-0 transition-colors", 
+                    isActive ? "text-violet-600" : "group-hover:text-violet-500"
+                  )} />
                   {!collapsed && (
-                    <span className="font-medium truncate">{item.label}</span>
+                    <span className={cn(
+                      "font-medium truncate text-sm",
+                      isActive && "font-semibold"
+                    )}>{item.label}</span>
+                  )}
+                  {collapsed && (
+                    <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-gray-900 text-white text-xs font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50 shadow-lg">
+                      {item.label}
+                      <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900" />
+                    </div>
                   )}
                 </div>
               </Link>
@@ -85,17 +97,22 @@ export default function Sidebar() {
 
         {/* Quick actions */}
         {!collapsed && (
-          <div className="absolute bottom-4 left-4 right-4">
-            <div className="p-4 gradient-bg rounded-xl text-white shadow-glow">
-              <p className="font-medium text-sm">Need help?</p>
-              <p className="text-xs text-violet-100 mt-1">Check out our docs</p>
-              <Button 
-                variant="secondary" 
-                size="sm" 
-                className="mt-3 w-full bg-white text-violet-600 hover:bg-violet-50"
-              >
-                View Docs
-              </Button>
+          <div className="p-3">
+            <div className="p-4 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-2xl text-white shadow-lg shadow-violet-500/20">
+              <div className="flex items-center gap-2 mb-1">
+                <Zap className="h-4 w-4" />
+                <p className="font-semibold text-sm">Pro Tip</p>
+              </div>
+              <p className="text-xs text-violet-100 leading-relaxed">Set up automation rules to save time</p>
+              <Link href="/dashboard/automation">
+                <Button 
+                  variant="secondary" 
+                  size="sm" 
+                  className="mt-3 w-full bg-white/90 text-violet-700 hover:bg-white font-semibold text-xs h-8"
+                >
+                  Setup Rules →
+                </Button>
+              </Link>
             </div>
           </div>
         )}

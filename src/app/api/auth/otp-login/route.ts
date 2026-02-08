@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
         emailVerified: true
       })
 
-      console.log(`✅ New user created via OTP login: ${email}`)
+      console.log(`[Auth] New user created via OTP login: ${email}`)
     } else {
       // Update emailVerified if not already
       if (!user.emailVerified) {
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
       maxAge: 60 * 60 * 24 * 7 // 7 days
     })
 
-    console.log(`✅ User logged in via OTP: ${email} (New: ${isNewUser})`)
+    console.log(`[Auth] User logged in via OTP: ${email} (New: ${isNewUser})`)
 
     return NextResponse.json({
       success: true,
